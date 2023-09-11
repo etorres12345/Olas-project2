@@ -4,18 +4,18 @@
   {{#each posts}}
   <div class="post-card">
     <div class="post-category">
-      <p>{{this.category}}</p>
+      <p>Category: {{this.category}}</p>
     </div>
     <div class="post-title">
-      <h3>{{this.title}}</h3>
+      <h3>Title: {{this.title}}</h3>
     </div>
     <div class="post-content">
-      <p>{{this.description}}</p>
-      <img src={{this.mediaUrl}} alt="">
+      <p>Desc: {{this.description}}</p>
+      {{!-- <img src={{this.mediaUrl}} alt=""> --}}
     </div>
     <div class="post-meta">
-      <p>{{this.author}}</p>
-      <p>{{this.timeStamps}}</p>
+      <p>Author: {{this.author.username}}</p>
+      <p>Timestamp: {{this.timeStamps}}</p>
     </div>
  </div> 
 {{/each}}
