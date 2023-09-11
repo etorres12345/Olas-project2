@@ -25,7 +25,7 @@ const projectName = "olas-project2";
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 // 👇 Start handling routes here
-const indexRoutes = require("./routes/index.routes");
+const indexRoutes = require("./routes/index");
 app.use("/", indexRoutes);
 
 const profileRoute = require("./routes/profile.routes");

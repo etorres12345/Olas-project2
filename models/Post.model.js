@@ -22,8 +22,8 @@ const postSchema = new Schema(
             required: [true, 'Description is required.'],
             max: 100
         },
-        media: {
-            type: String,
+        mediaUrl: {
+            type: String
         }
     },
     {

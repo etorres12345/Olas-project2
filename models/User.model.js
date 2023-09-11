@@ -11,7 +11,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: '../public/images/default-avatar.png'
+      default: '🌊'
     },
     posts: [
       {
