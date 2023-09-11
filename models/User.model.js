@@ -9,12 +9,15 @@ const userSchema = new Schema(
       unique: true,
       min: 5,
     },
-    avatarUrl: {
+    avatar: {
       type: String,
       default: '🌊'
     },
     posts: [
-      { type: Schema.Types.ObjectId, ref: 'Post' }
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Post'
+      }
     ],
     passwordHash: {
       type: String,
@@ -22,7 +25,6 @@ const userSchema = new Schema(
     },
   },
   {
-    // this second object adds extra properties: `createdAt` and `updatedAt`    
     timestamps: true
   }
 );
