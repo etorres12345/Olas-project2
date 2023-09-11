@@ -1,0 +1,23 @@
+<h2>All posts List when logged in</h2>
+
+<div class="posts-container">
+  {{#each posts}}
+  <div class="post-card">
+    <div class="post-category">
+      <p>{{this.category}}</p>
+    </div>
+    <div class="post-title">
+      <h3>{{this.title}}</h3>
+    </div>
+    <div class="post-content">
+      <p>{{this.description}}</p>
+      <img src={{this.mediaUrl}} alt="">
+    </div>
+    <div class="post-meta">
+      <p>{{this.author}}</p>
+      <p>{{this.timeStamps}}</p>
+    </div>
+ </div> 
+{{/each}}
+</div>
+
