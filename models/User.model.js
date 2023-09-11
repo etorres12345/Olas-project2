@@ -11,7 +11,7 @@ const userSchema = new Schema(
     },
     avatarUrl: {
       type: String,
-      default: '../public/images/default-avatar.png'
+      default: '🌊'
     },
     posts: [
       { type: Schema.Types.ObjectId, ref: 'Post' }
