@@ -21,7 +21,7 @@ const postSchema = new Schema(
             required: true,
             max: 100
         },
-        media: {
+        mediaUrl: {
             type: String
         }
     },
