@@ -3,8 +3,9 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../../models/User.model');
 const mongoose = require('mongoose');
+const { isLoggedOut } = require('../../middleware/route-guard');
 
-router.get('/signup', (req, res) => res.render('auth/signup'));
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
 
 router.post('/signup', (req, res, next) => {
 
