@@ -1,1 +1,27 @@
-<h1>Hello, here we create a profile</h1>
+<h1>Update your profile</h1>
+
+<form action="/profile/create" method="POST">
+  <h2>Update your profile</h2>
+  <label>
+    Avatar
+    <input type="file" name="avatar" accept="image/*" />
+  </label>
+
+  <label>
+    Username
+    <input type="text" name="username" />
+  </label>
+
+  <label>
+    Add a personal surf mantra
+    <input type="text" name="surfMantra" />
+  </label>
+
+  <label>
+    Tallest wave ever surfed?
+    <input type="text" name="tallestWave" />
+  </label>
+
+  <button type="submit">Save</button>
+
+</form>

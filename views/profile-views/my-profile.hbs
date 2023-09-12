@@ -1,2 +1,17 @@
-<h2>My Profile Page</h2>
-<p>Hello World</p>
+<div class="profile-container">
+  <img src="{{user.avatar}}" alt="User Avatar" class="avatar" />
+  <h2>{{user.username}}</h2>
+  <p>{{user.caption}}</p>
+</div>
+
+<div class="post-container">
+  <h3>My Posts</h3>
+
+  {{#each user.posts}}
+    <div class="post">
+      <h4>{{title}}</h4>
+      <p>{{description}}</p>
+    </div>
+  {{/each}}
+
+</div>
