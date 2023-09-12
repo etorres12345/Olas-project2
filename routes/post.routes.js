@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const Post = require("../models/Post.model");
+const User = require("../models/User.model");
+const fileUploader = require('../config/cloudinary.config');
+
 
 // GET route to display form to create post
 router.get('/post-create', (req, res, next) => {
@@ -7,20 +10,16 @@ router.get('/post-create', (req, res, next) => {
 });
 
 // GET route to display form to create post
-/* <form action="/post-create" method="POST"> */
-router.post('/post-create', (req, res, next) => {
-    // const { author } = req.session.currentUser
+router.post('/post-create', fileUploader.single('post-file-upload'), (req, res, next) => {
+    const { _id } = req.session.currentUser
     const { title, category, description } = req.body;
-    console.log("req body:", req.body);
 
-    Post.create({ title, category, description })
+    Post.create({ _id, title, category, description, mediaUrl: req.file.path })
         .then(newPost => {
-            // when the new post is created, the user needs to be found and its posts updated with the
-            // ID of newly created post
-            // return User.findByIdAndUpdate(author._id, { $push: { posts: newPost._id } });
-            console.log("===Post details===:", newPost)
+            // find user and update post updated with new post
+            return User.findByIdAndUpdate(_id, { $push: { posts: newPost._id } });
         })
-        .then(() => res.redirect('/posts')) // if everything is fine, redirect to list of posts
+        .then(() => res.redirect('/posts'))
         .catch(err => {
             console.log(`Err while creating the post in the DB: ${err}`);
             next(err);
@@ -34,7 +33,6 @@ router.get("/posts", (req, res, next) => {
     Post.find()
         // .populate('author')
         .then(allPosts => {
-            // console.log("All posts in DB:", allPosts);
             res.render('posts/posts.hbs', { posts: allPosts })
         })
         .catch(error => next(error));
