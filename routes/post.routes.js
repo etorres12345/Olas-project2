@@ -1,10 +1,15 @@
 const router = require("express").Router();
 const Post = require("../models/Post.model");
 
+// GET route to display form to create post
+router.get('/post-create', (req, res, next) => {
+    res.render('posts/create.hbs')
+});
+
 // GET route to display all the posts
 router.get("/posts", (req, res, next) => {
     Post.find()
-        .populate('author')
+        // .populate('author')
         .then(allPosts => {
             console.log("All posts in DB:", allPosts);
             res.render('posts/posts.hbs', { posts: allPosts })

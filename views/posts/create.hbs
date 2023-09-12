@@ -1,0 +1,32 @@
+<h2>Share your surfing adventure...</h2>
+
+<div class="post-form">
+  <form action="/post-create" method="POST">
+      <div class="category-options">
+        <p>Choose a category:</p>
+        <input type="radio" id="sell-rent" name="sell-rent" value="sell-rent">
+        <label for="sell-rent">sell/rent</label>
+        <img src="images/board-icon.png" alt="board icon">
+        <input type="radio" id="tips" name="tips" value="tips">
+        <label for="tips">tips</label>
+        <img src="images/tips-icon.png" alt="palmtree icon">
+        <input type="radio" id="meetup" name="meetup" value="meetup">
+        <label for="meetup">meet up</label>
+        <img src="images/meetup-icon.png" alt="palmtree icon">
+      </div>
+      <div class="post-content">
+        <p>Title:</p>
+        <input type="text" name="title" placeholder="sunrise surf session..."/>
+        <p>Description:</p>
+        <textarea type="textarea" name="description"> </textarea>
+      </div>
+      <div class="file-upload">
+        <label for="file-upload">upload your file</label>
+        <input type="file"  name="file-upload"  accept="image/png, image/jpeg, video/*" />
+      </div>
+      <div class="submit-cancel">
+        <button type="submit">create</button>
+        <button type="button">cancel</button>
+      </div>
+  </form>
+</div>
