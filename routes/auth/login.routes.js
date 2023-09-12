@@ -3,10 +3,11 @@
 const router = require('express').Router();
 const bcryptjs = require('bcryptjs');
 const User = require('../../models/User.model');
+const { isLoggedOut } = require('../../middleware/route-guard');
 
 // router.get('/login', (req, res) => res.render('auth/login'));
 
-router.get('/login', (req, res) => {
+router.get('/login', isLoggedOut, (req, res) => {
     res.render('auth/login', { userInSession: req.session.currentUser });
   });
 
