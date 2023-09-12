@@ -1,7 +1,6 @@
 <h2>Share your surfing adventure...</h2>
-
 <div class="post-form">
-  <form action="/post-create" method="POST" enctype="multipart/form-data"></form>>
+  <form action="/post-create" method="POST" enctype="multipart/form-data">
       <div class="category-options">
         <p>Choose a category:</p>
         <input type="radio" id="sell-rent" name="category" value="sell/rent">
@@ -22,7 +21,8 @@
       </div>
       <div class="file-upload">
         <label for="file-upload">upload your file</label>
-        <input type="file"  name="post-file-upload"  accept="image/png, image/jpeg, video/*" />
+        <input type="file" name="post-file-upload" /
+        />
       </div>
       <div class="submit-cancel">
         <button type="submit">create</button>

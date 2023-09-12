@@ -11,13 +11,14 @@ router.get('/post-create', (req, res, next) => {
 
 // GET route to display form to create post
 router.post('/post-create', fileUploader.single('post-file-upload'), (req, res, next) => {
-    const { _id } = req.session.currentUser
+    const { _id } = req.session.currentUser;
     const { title, category, description } = req.body;
+    const mediaUrl = req.file.path;
 
-    Post.create({ _id, title, category, description, mediaUrl: req.file.path })
+    Post.create({ author: _id, title, category, description, mediaUrl })
         .then(newPost => {
-            // find user and update post updated with new post
-            return User.findByIdAndUpdate(_id, { $push: { posts: newPost._id } });
+            // update user's posts array
+            return User.findByIdAndUpdate(newPost.author, { $push: { posts: newPost._id } });
         })
         .then(() => res.redirect('/posts'))
         .catch(err => {
@@ -26,12 +27,10 @@ router.post('/post-create', fileUploader.single('post-file-upload'), (req, res, 
         });
 });
 
-
-
 // GET route to display all the posts
 router.get("/posts", (req, res, next) => {
     Post.find()
-        // .populate('author')
+        .populate('author')
         .then(allPosts => {
             res.render('posts/posts.hbs', { posts: allPosts })
         })

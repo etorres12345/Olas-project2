@@ -10,12 +10,12 @@
     <div class="post-title">
       <h5>Title: {{this.title}}</h5>
     <div class="post-content">
-      <p>Desc: {{this.description}}</p>
-      <img src="{{this.mediaUrl}}" alt="post image">
+      <p>Description: {{this.description}}</p>
+      <img src="{{this.mediaUrl}}" alt="">
     </div>
     <div class="post-meta">
       <p>Author: {{this.author.username}}</p>
-      <p>Timestamp: {{this.createdAt}}</p>
+      <p>Created: {{dateFormat this.createdAt "MMM Do YYYY, h:mm a" true}}</p>
     </div>
  </div> 
 {{/each}}
