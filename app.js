@@ -35,6 +35,9 @@ app.use("/", profileRoute);
 const loginRoutes = require("./routes/auth/login.routes");
 app.use("/", loginRoutes);
 
+const signupRoutes = require("./routes/auth/signup.routes");
+app.use("/", signupRoutes);
+
 const postRoutes = require("./routes/post.routes");
 app.use("/", postRoutes);
 
