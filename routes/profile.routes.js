@@ -1,55 +1,79 @@
 const router = require("express").Router();
 const { isLoggedOut } = require('../middleware/route-guard');
 const User = require("../models/User.model");
-// const fileUploader = require('../../config/cloudinary.config');
+const fileUploader = require('../config/cloudinary.config');
 
-router.get("/profile", isLoggedOut, (req, res) => {
+// router.get("/profile", isLoggedOut, (req, res) => {
+//   res.render("profile-views/my-profile");
+// });
+
+router.get("/profile", isLoggedOut, async (req, res) => {
+  try {
+    const userId = req.session.user._id;
+    const userPosts = await Post.find({ author: userId });
+    const hasPosts = userPosts.length > 0;
+
+    res.render("profile-views/my-profile", {
+      user: req.session.user,
+      userPosts: userPosts,
+      hasPosts: hasPosts, 
+    });
+  } catch (error) {
+    console.error(error);
+
+  }
+});
+
+router.get("/profile/edit", isLoggedOut, (req, res) => {
   res.render("profile-views/my-profile");
 });
 
-// router.get("/profile/:profileId", isLoggedOut, (req, res) => {
-//   const {userId} = req.params;
+router.post("/profile/edit", isLoggedOut, fileUploader.single("user-image"), async (req, res) => {
+  try {
+    const userId = req.session.user._id; 
+    const updatedData = req.body; 
+    const newImg = req.file ? req.file.path : undefined; 
 
-//   User.findById(userId) 
-//     .then(theUser => res.render("profile-views/my-profile", {user: theUser}))
-//     .catch(error => {
-//       next(error);
-//     });
-// });
+    await User.findByIdAndUpdate(userId, {
+      ...updatedData,
+      avatar: newImg || req.session.user.avatar, 
+    });
 
-// router.post("/profile",  isLoggedOut, (req, res, next) => {
-//   // const {_id} = currentUser;
-//   const { username, avatar } = req.body;
-
-//   User.create({ username, avatar } )
-  
-// });
-
-
-// router.get("/profile/edit", isLoggedOut, (req, res) => {
-//   res.render("profile-views/edit-profile");
-// });
-
-// router.post("/profile/edit", isLoggedOut, fileUploader.single("user-image"), (req, res, next) => {
-//   const newImg = req.file.path;   
-//   const {_id} = currentUser;
-
-// })
-
-router.get("/profile/delete", (req, res) => {
-  res.render("profile-views/delete-profile");
+    res.redirect("/profile");
+  } catch (error) {
+    
+    console.error(error);
+    
+  }
 });
 
-// router.get("/profile/create-post", (req, res) => {
-//   res.render("profile-views/create-post");
-// });
+router.get("/profile/delete", (req, res) => {
+  res.render("profile-views/my-profile");
+});
 
-// router.get("/profile/edit-post", (req, res) => {
-//   res.render("profile-views/edit-post");
-// });
+  // should we add here a confirmation message or page?
+router.post("/profile/delete", isLoggedOut, async (req, res) => {
+  try {
+    const userId = req.session.user._id; 
+    const user = await User.findById(userId);
 
-// router.get("/profile/delete-post", (req, res) => {
-//   res.render("profile-views/delete-post");
-// });
+    if (!user) {
+      return res.redirect("/profile");
+    }
+
+    // if user has post we can also delele them?
+
+    await User.findByIdAndRemove(userId);
+
+    req.session.destroy();
+
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);  
+  }
+});
+
+
+
 
 module.exports = router;
