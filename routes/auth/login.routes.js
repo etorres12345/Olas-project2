@@ -9,7 +9,7 @@ const { isLoggedOut } = require('../../middleware/route-guard');
 
 router.get('/login', isLoggedOut, (req, res) => {
     res.render('auth/login', { userInSession: req.session.currentUser });
-  });
+});
 
 // router.get('/posts', (req, res) => {
 //     res.render('posts', { userInSession: req.session.currentUser });
@@ -18,15 +18,15 @@ router.get('/login', isLoggedOut, (req, res) => {
 router.post('/login', (req, res, next) => {
     const { username, password } = req.body;
 
-    if(username === '' || password === '') {
+    if (username === '' || password === '') {
         res.render('auth/login', {
             errorMessage: 'Surfer, please enter both, your username and password to login 👆'
         });
         return;
     }
-    User.findOne({username})
+    User.findOne({ username })
         .then(user => {
-            if(!user) {
+            if (!user) {
                 res.render('auth/login', {
                     errorMessage: 'User not found and/or incorrect password 🤖'
                 });
@@ -35,14 +35,14 @@ router.post('/login', (req, res, next) => {
                 req.session.currentUser = user;
                 res.redirect('/posts');
             } else {
-                res.render('auth/login', {errorMessage: 'User not found and/or incorrect password 🤖'});
+                res.render('auth/login', { errorMessage: 'User not found and/or incorrect password 🤖' });
             }
         })
         .catch(error => next(error));
 });
 
 // const isAuthenticated = (req, res, next) => {
-//     if(req.session.currentUser) {
+//     if (req.session.currentUser) {
 //         next();
 //     } else {
 //         res.redirect('/login');
@@ -51,7 +51,7 @@ router.post('/login', (req, res, next) => {
 
 router.post('/logout', (req, res, next) => {
     req.session.destroy(err => {
-        if(err) next(err);
+        if (err) next(err);
         res.redirect("/");
     });
 });

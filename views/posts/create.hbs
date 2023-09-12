@@ -1,16 +1,15 @@
 <h2>Share your surfing adventure...</h2>
-
 <div class="post-form">
-  <form action="/post-create" method="POST">
+  <form action="/post-create" method="POST" enctype="multipart/form-data">
       <div class="category-options">
         <p>Choose a category:</p>
-        <input type="radio" id="sell-rent" name="sell-rent" value="sell-rent">
+        <input type="radio" id="sell-rent" name="category" value="sell/rent">
         <label for="sell-rent">sell/rent</label>
         <img src="images/board-icon.png" alt="board icon">
-        <input type="radio" id="tips" name="tips" value="tips">
+        <input type="radio" id="tips" name="category" value="tips">
         <label for="tips">tips</label>
         <img src="images/tips-icon.png" alt="palmtree icon">
-        <input type="radio" id="meetup" name="meetup" value="meetup">
+        <input type="radio" id="meetup" name="category" value="meetup">
         <label for="meetup">meet up</label>
         <img src="images/meetup-icon.png" alt="palmtree icon">
       </div>
@@ -22,7 +21,8 @@
       </div>
       <div class="file-upload">
         <label for="file-upload">upload your file</label>
-        <input type="file"  name="file-upload"  accept="image/png, image/jpeg, video/*" />
+        <input type="file" name="post-file-upload" /
+        />
       </div>
       <div class="submit-cancel">
         <button type="submit">create</button>
