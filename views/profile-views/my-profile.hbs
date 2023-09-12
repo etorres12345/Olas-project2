@@ -13,5 +13,29 @@
       <p>{{description}}</p>
     </div>
   {{/each}}
-
 </div>
+
+ <h1>Surfer num</h1>
+  <form action="/profile" method="post" enctype="multipart/form-data"> 
+      <div class="form-profile">
+       
+          <input type="file" name="user-image" class="form-control-file" />
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+    <a href="/profile/{{id}}/edit" class="btn btn-primary">Edit</a>
+
+  
+{{!-- {{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/userProfile">Reload the page</a>
+  </button>
+{{else}}
+  
+  <br><p>Still no logged in user, sorry!</p>
+ 
+{{/if}} --}}
