@@ -8,7 +8,31 @@
       <title>{{appTitle}}</title>
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
+   <header>
+      {{#if userInSession}}
+         <nav>
+            <img src="" alt="logo" class="logo-vertical-navbar">
+            <div class="category-btn">
 
+            </div>
+            <div class="create-post">
+               <a href="/post/create">
+                  <img src="" alt="user avatar">
+               </a>
+            </div>
+            <div class="profile-avatar">
+               <a href="/profile">
+                  <img src="" alt="user avatar">
+               </a>
+            </div>
+            <div class="logout">
+               <form id="logout-form" action="/logout" method="POST">
+                  <button>Logout</button>
+               </form>
+            </div>
+         </nav>
+      {{/if}}
+   </header>
    <body>
 
       {{{body}}}
