@@ -1,0 +1,16 @@
+<h1>Filtered Posts</h1>
+
+<h2>Category: {{selectedCategory}}</h2>
+
+{{#if posts.length}}
+  <ul>
+    {{#each posts}}
+      <li>
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No posts found for this category.</p>
+{{/if}}
