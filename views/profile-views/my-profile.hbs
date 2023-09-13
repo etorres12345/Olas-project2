@@ -5,22 +5,23 @@
   <div class="profile-wrapper">
     <img src="{{user.avatar}}" alt="User Avatar" class="avatar" />
     {{!-- <img src="/images/icons/edit-icon.png" alt="pencil-icon" onclick="openPopup({{}})" > --}}
-    <button id="profilePencilIcon" onclick= "openPopup({})"></button>
+    <img id="profilePencilIcon" src="./images/icons/edit-icon.png" /> 
     
-    <h2>{{ user.username }}</h2>
+    <h2>{{ user.username }}  </h2>
     <p>{{user.caption}}</p>
   </div>
 
 {{!-- if the user has post we can display this container otherwise none --}}
 
-<div id="popupEditForm" style="display: none;">
+{{!-- <div id="popupEditForm" style="display: none;"> --}}
   <h2>Update your profile 👇</h2>
   {{!-- <img src="/images/close-btn.png" alt="close icon"  onclick="closePopup()"> --}}
-  <button id="closePopupBtn"></button>
-  <form action="/profile" method="post" enctype="multipart/form-data"> 
+  
+  <img id="closePopupBtn" src="./images/close-btn.png" alt="">
+  <form action="/profile" method="POST" enctype="multipart/form-data"> 
   <div class="form-profile">
     <label for="username">username</label>
-      <input type="text" name="username">
+      <input type="text" name="username" value="{{user.username}}" >
     <label for="file">Add your avatar</label>
       <input type="file" name="user-image" class="form-control-file" /> 
     </div>

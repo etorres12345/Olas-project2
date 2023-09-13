@@ -33,8 +33,12 @@ router.post('/signup', (req, res, next) => {
           passwordHash: hashedPassword
         });
       })
-      .then(userFromDB => {
+      .then(user => {
+
+        console.log(user);
+        req.session.currentUser = user;
         res.redirect('/profile');
+        //res.redirect(`/profile?username=${newUser.username}&avatar=${newUser.avatar}`);
       })
       .catch(error => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -48,8 +52,6 @@ router.post('/signup', (req, res, next) => {
           }
         }); 
     }) 
-
-
 
 
 

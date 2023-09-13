@@ -13,7 +13,7 @@ const storage = new CloudinaryStorage({
   cloudinary,
   params: {
     allowed_formats: ['jpg', 'png'],
-    folder: 'movie-project' 
+    folder: 'olas-project' 
   }
 });
 
