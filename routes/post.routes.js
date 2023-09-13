@@ -13,6 +13,7 @@ router.get('/post-create', isLoggedIn, (req, res, next) => {
 // POST route to create post
 router.post('/post-create', isLoggedIn, fileUploader.single('post-file-upload'), (req, res, next) => {
     const { _id } = req.session.currentUser;
+    console.log("+++++ ID:", _id)
     const { title, category, description } = req.body;
 
     let mediaUrl;
@@ -84,6 +85,21 @@ router.get('/post/:postId', isLoggedIn, (req, res) => {
         .populate('author')
         .then(thePost => {
             res.render('posts/post-details.hbs', { thePost })
+        })
+        .catch(error => next(error));
+});
+
+// GET route to display only current user's posts
+router.get('/posts/user/:id', (req, res) => {
+    const { _id } = req.session.currentUser;
+    console.log("+++++ the user: ", req.session.currentUser)
+    console.log("+++++ ID +++:", _id)
+    // posts/user/65005b04c40770270a18e809
+    User.findById(_id)
+        .populate('posts')
+        .then(user => {
+            // console.log("/The user from DB/:", user);
+            res.render('profile-views/my-profile.hbs', { user })
         })
         .catch(error => next(error));
 });
