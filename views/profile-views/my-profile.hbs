@@ -1,2 +1,68 @@
-<h2>My Profile Page</h2>
-<p>Hello World</p>
+<div class="profile-container">
+
+  <h1>Surfer num</h1> 
+  {{!-- here a random number --}}
+  <div class="profile-wrapper">
+    <img src="{{user.avatar}}" alt="User Avatar" class="avatar" />
+    {{!-- <img src="/images/icons/edit-icon.png" alt="pencil-icon" onclick="openPopup({{}})" > --}}
+    <img id="profilePencilIcon" src="./images/icons/edit-icon.png" /> 
+    
+    <h2>{{ user.username }}  </h2>
+    <p>{{user.caption}}</p>
+  </div>
+
+{{!-- if the user has post we can display this container otherwise none --}}
+
+{{!-- <div id="popupEditForm" style="display: none;"> --}}
+  <h2>Update your profile 👇</h2>
+  {{!-- <img src="/images/close-btn.png" alt="close icon"  onclick="closePopup()"> --}}
+  
+  <img id="closePopupBtn" src="./images/close-btn.png" alt="">
+  <form action="/profile" method="POST" enctype="multipart/form-data"> 
+  <div class="form-profile">
+    <label for="username">username</label>
+      <input type="text" name="username" value="{{user.username}}" >
+    <label for="file">Add your avatar</label>
+      <input type="file" name="user-image" class="form-control-file" /> 
+    </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    {{!-- <a href="/profile/edit" class="btn btn-primary">Edit</a> --}}
+</div>
+ 
+
+{{#if hasPosts}}
+  <div id="postsContainer">
+    <h3>My Posts</h3>
+    {{#each userPosts}}
+      <div class="post">
+        <h2>{{ title }}</h2>
+         <p>{{ description }}</p>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>No posts yet. Start sharing your surf adventures!</p>
+{{/if}}
+
+ <button id="deleteProfileBtn" class="btn btn-primary">Delete</button>
+</div>
+
+
+
+ 
+ 
+
+  
+{{!-- {{#if userInSession}}
+  <h2>Welcome, {{ userInSession.username }}!</h2>
+  <p>This is your profile page my friend!</p>
+  <button>
+    <a href="/userProfile">Reload the page</a>
+  </button>
+{{else}}
+  
+  <br><p>Still no logged in user, sorry!</p>
+ 
+{{/if}} --}}
