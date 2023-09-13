@@ -1,6 +1,6 @@
 <h2>Share your surfing adventure...</h2>
 <div class="post-form">
-  <form action="/post-create" method="POST" enctype="multipart/form-data">
+  <form action="/post-create" method="POST" enctype="multipart/form-data" >
       <div class="category-options">
         <p>Choose a category:</p>
         <input type="radio" id="sell-rent" name="category" value="sell/rent">
@@ -20,13 +20,18 @@
         <textarea type="textarea" name="description"> </textarea>
       </div>
       <div class="file-upload">
-        <label for="file-upload">upload your file</label>
-        <input type="file" name="post-file-upload" /
-        />
+        <label>Add media:
+          <input type="file" name="post-file-upload"/>
+        </label>
+         {{!-- <label for="file-upload">upload your file</label>
+         <input type="file" name="post-file-upload"/> --}}
       </div>
       <div class="submit-cancel">
         <button type="submit">create</button>
-        <button type="button">cancel</button>
+        <a href="/profile">cancel</a>
       </div>
   </form>
 </div>
+ {{#if errorMessage}}
+    <p class="error">🙀 {{errorMessage}}</p>
+  {{/if}}

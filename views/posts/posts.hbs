@@ -1,14 +1,22 @@
-<h2>All posts List when logged in</h2>
+<h2>All posts list when logged in</h2>
 
 <div class="posts-container">
   {{#each posts}}
   <div class="post-card">
+    {{!-- {{#compareUser userInSession._id  this.author._id}} --}}
+      <div class="post-modify">
+        <a href="/post/{{this._id}}/edit">Edit</a>
+        <form action="/post/{{this._id}}/delete" method="POST">
+         <button>Delete</button>
+        </form>
+      </div>
+    {{!-- {{/compareUser}} --}}
     <div class="post-category">
-    </div>
       <h5>Category: {{this.category}}</h5>
     </div>
     <div class="post-title">
       <h5>Title: {{this.title}}</h5>
+    </div>
     <div class="post-content">
       <p>Description: {{this.description}}</p>
       <img src="{{this.mediaUrl}}" alt="">
