@@ -4,7 +4,8 @@
   <form action="/post/{{post._id}}/edit" method="POST" enctype="multipart/form-data">
       <div class="category-options">
         <p>Choose a category:</p>
-        <input type="radio" id="sell-rent" name="category" value={{"sell/rent"}}>
+
+        <input type="radio" id="sell-rent" name="category" value="sell/rent">
         <label for="sell-rent">sell/rent</label>
         <img src="/images/board-icon.png" alt="board icon">
         <input type="radio" id="tips" name="category" value="tips">
@@ -16,7 +17,7 @@
       </div>
       <div class="post-content">
         <p>Title:</p>
-        <input type="text" name="title" value={{post.title}}/>
+        <input type="text" name="title" value={{post.title}}>
         <p>Description:</p>
         <textarea type="textarea" name="description">{{post.description}}</textarea>
         <p>Current media:</p>
