@@ -4,17 +4,28 @@ const User = require("../models/User.model");
 const Post = require("../models/Post.model");
 const fileUploader = require("../config/cloudinary.config");
 
-router.get("/profile", (req, res) => {
-  res.render("profile-views/my-profile", { user: req.session.currentUser });
+
+// GET route to display only current user's posts
+router.get("/profile", isLoggedIn, (req, res) => {
+  const { _id } = req.session.currentUser;
+  console.log("+++++ the user: ", req.session.currentUser);
+  console.log("+++++ ID +++:", _id);
+  User.findById(_id)
+    .populate("posts")
+    .then((user) => {
+      // console.log("/The user from DB/:", user);
+      res.render("profile-views/my-profile.hbs", { user });
+    })
+    .catch((error) => next(error));
 });
 
-// router.get("/profile", isLoggedOut, async(req, res) => {
-//   try {
-//     const username = req.query.username;
-//     const avatar = req.query.avatar;
-//     const userId = req.session.user._id;
-//     // const userPosts = Post.find({ author: userId });
-//     const hasPosts = userPosts.length > 0;
+// router.get("/profile", isLoggedIn, (req, res) => {
+//   res.render("profile-views/my-profile");
+// });
+
+router.get("/profile/create", (req, res) => {
+  res.render("profile-views/create-profile");
+});
 
 //     res.render("profile-views/my-profile", {
 //       user: req.session.user,
