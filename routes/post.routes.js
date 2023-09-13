@@ -52,7 +52,7 @@ router.get("/post/:postId/edit", isLoggedIn, (req, res, next) => {
 
     Post.findById(postId)
         .then((postToEdit) => {
-            res.render("posts/edit.hbs", { layout: "layouts/navbar", post: postToEdit, postCategory: category });
+            res.render("posts/edit.hbs", { layout: "layouts/navbar", post: postToEdit });
         })
         .catch((error) => next(error));
 });
@@ -65,7 +65,6 @@ router.post(
     (req, res, next) => {
         const { postId } = req.params;
         const { title, category, description, existingMedia } = req.body;
-        console.log("category: ", category)
 
         let mediaUrl;
         if (req.file) {
