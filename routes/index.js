@@ -3,14 +3,14 @@ const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
 
 /* GET home page */
 // router.get("/", (req, res) => {
-  
+
 //   // res.render("index");
-  
+
 //   res.render("index", isLoggedIn ? {layout: 'navbar'} :   {layout: 'main'} );
 // });
 
 router.get("/", (req, res) => {
-  res.render("index",  req.session.currentUser ? {layout: 'layouts/navbar'} :  {layout: 'layouts/main'} );
+  res.render("index", { layout: 'layouts/main' });
 });
 
 
