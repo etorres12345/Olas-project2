@@ -13,6 +13,7 @@ const storage = new CloudinaryStorage({
   params: {
     allowed_formats: ['jpg', 'png', 'mp4', 'gif'],
     folder: 'ola-app'
+
   }
 });
 
