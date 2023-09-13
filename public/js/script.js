@@ -1,4 +1,3 @@
-
 // // https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("olas-project2 JS imported successfully!");
@@ -30,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const searchImage = document.getElementById("search-image");
+  const resetButton = document.getElementById("reset-button");
 
   searchImage.addEventListener("click", function () {
     const keyword = prompt("Enter a keyword to search for:");
@@ -40,5 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
       searchForm.submit();
     }
   });
+  resetButton.addEventListener("click", function () {
+    console.log("resetting!");
+    window.location.reload();
+  });
 });
-
