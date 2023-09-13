@@ -4,9 +4,45 @@ const User = require("../models/User.model");
 const Post = require("../models/Post.model");
 const fileUploader = require("../config/cloudinary.config");
 
-// GET route to display only current user's posts
-router.get("/profile", isLoggedIn, (req, res) => {
-  const { _id } = req.session.currentUser;
+
+router.get("/profile", (req, res) => {
+  res.render("profile-views/my-profile", { layout: "layouts/navbar", user: req.session.currentUser });
+});
+
+// router.get("/profile", isLoggedOut, async(req, res) => {
+//   try {
+//     const username = req.query.username;
+//     const avatar = req.query.avatar;
+//     const userId = req.session.user._id;
+//     // const userPosts = Post.find({ author: userId });
+//     const hasPosts = userPosts.length > 0;
+
+//     res.render("profile-views/my-profile", {
+//       user: req.session.user,
+//       username: username,
+//       avatar: avatar,
+//       userPosts: userPosts,
+//       hasPosts: hasPosts,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
+
+// router.get("/profile", isLoggedOut, async (req, res) => {
+//   try {
+//     const userId = req.session.user._id;
+//     const userPosts = await Post.find({ author: userId });
+//     const hasPosts = userPosts.length > 0;
+
+//     res.render("profile-views/my-profile", {
+//       user: req.session.user,
+//       userPosts: userPosts,
+//       hasPosts: hasPosts,
+//     });
+//   } catch (error) {
+//     console.error(error);
+
 
   User.findById(_id)
     .populate("posts")

@@ -2,7 +2,7 @@ const profileSchema = new Schema(
   {
     avatar: {
       type: String,
-      default: "🌊",
+      default: String,
     },
     surfMantra: {
       type: String,

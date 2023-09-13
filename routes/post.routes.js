@@ -7,7 +7,10 @@ const { isLoggedIn } = require("../middleware/route-guard");
 // GET route to display form to create post
 
 router.get("/post-create", isLoggedIn, (req, res, next) => {
-    res.render("posts/create.hbs");
+
+  res.render("posts/create.hbs",  { layout: "layouts/navbar"} );
+  
+
 });
 
 // POST route to create post
@@ -49,11 +52,13 @@ router.post(
 router.get("/post/:postId/edit", isLoggedIn, (req, res, next) => {
     const { postId } = req.params;
 
-    Post.findById(postId)
-        .then((postToEdit) => {
-            res.render("posts/edit.hbs", { post: postToEdit });
-        })
-        .catch((error) => next(error));
+
+  Post.findById(postId)
+    .then((postToEdit) => {
+      res.render("posts/edit.hbs", { layout: "layouts/navbar", post: postToEdit });
+    })
+    .catch((error) => next(error));
+
 });
 
 // POST route to edit post
@@ -93,14 +98,31 @@ router.post("/post/:postId/delete", isLoggedIn, (req, res, next) => {
 
 // GET route to display single post e.g. via profile or main post page
 router.get("/post/:postId", isLoggedIn, (req, res) => {
-    const { postId } = req.params;
 
-    Post.findById(postId)
-        .populate("author")
-        .then((thePost) => {
-            res.render("posts/post-details.hbs", { thePost });
-        })
-        .catch((error) => next(error));
+  const { postId } = req.params;
+
+  Post.findById(postId)
+    .populate("author")
+    .then((thePost) => {
+      res.render("posts/post-details.hbs",  { layout: "layouts/navbar", thePost });
+    })
+   .catch((error) => next(error));
+});
+
+// GET route to display only current user's posts
+router.get("/posts/user/:id", (req, res) => {
+  const { _id } = req.session.currentUser;
+  console.log("+++++ the user: ", req.session.currentUser);
+  console.log("+++++ ID +++:", _id);
+  // posts/user/65005b04c40770270a18e809
+  User.findById(_id)
+    .populate("posts")
+    .then((user) => {
+      // console.log("/The user from DB/:", user);
+      res.render("profile-views/my-profile.hbs",  { layout: "layouts/navbar", user });
+    })
+    .catch((error) => next(error));
+
 });
 
 // GET route to search all the posts
@@ -119,13 +141,13 @@ router.post("/posts/search", isLoggedIn, (req, res) => {
 });
 // GET route to display all the posts
 router.get("/posts", isLoggedIn, (req, res, next) => {
-    Post.find()
-        .sort({ createdAt: -1 })
-        .populate("author")
-        .then((allPosts) => {
-            res.render("posts/posts.hbs", { posts: allPosts });
-        })
-        .catch((error) => next(error));
+  Post.find()
+    .populate("author")
+    .then((allPosts) => {
+      res.render("posts/posts.hbs", { layout: "layouts/navbar", posts: allPosts });
+    })
+    .catch((error) => next(error));
+
 });
 
 module.exports = router;
