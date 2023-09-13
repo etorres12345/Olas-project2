@@ -22,6 +22,7 @@ router.post("/posts/search", (req, res) => {
 
   Post.find({ $text: { $search: keyword } })
     .then((posts) => {
+      console.log("Found this!");
       res.render("posts/posts.hbs", { posts });
     })
     .catch((err) => {
