@@ -1,13 +1,11 @@
 const router = require("express").Router();
-const { isLoggedOut, isLoggedIn } = require('../middleware/route-guard');
+const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard");
 const User = require("../models/User.model");
 const Post = require("../models/Post.model");
-const fileUploader = require('../config/cloudinary.config');
+const fileUploader = require("../config/cloudinary.config");
 
 router.get("/profile", (req, res) => {
-  res.render("profile-views/my-profile",{user: req.session.currentUser});
-
-
+  res.render("profile-views/my-profile", { user: req.session.currentUser });
 });
 
 // router.get("/profile", isLoggedOut, async(req, res) => {
@@ -16,14 +14,14 @@ router.get("/profile", (req, res) => {
 //     const avatar = req.query.avatar;
 //     const userId = req.session.user._id;
 //     // const userPosts = Post.find({ author: userId });
-//     const hasPosts = userPosts.length > 0; 
+//     const hasPosts = userPosts.length > 0;
 
 //     res.render("profile-views/my-profile", {
 //       user: req.session.user,
-//       username: username, 
+//       username: username,
 //       avatar: avatar,
 //       userPosts: userPosts,
-//       hasPosts: hasPosts,  
+//       hasPosts: hasPosts,
 //     });
 //   } catch (error) {
 //     console.error(error);
@@ -39,7 +37,7 @@ router.get("/profile", (req, res) => {
 //     res.render("profile-views/my-profile", {
 //       user: req.session.user,
 //       userPosts: userPosts,
-//       hasPosts: hasPosts, 
+//       hasPosts: hasPosts,
 //     });
 //   } catch (error) {
 //     console.error(error);
@@ -48,36 +46,33 @@ router.get("/profile", (req, res) => {
 // });
 
 // router.get("/profile/:id/edit", (req, res) => {
-//   const {_id} = req.session.user; 
+//   const {_id} = req.session.user;
 //     console.log("----- the user id-----",_id)
 //   res.render("profile-views/my-profile");
 // });
 
 router.post("/profile", fileUploader.single("user-image"), (req, res, next) => {
+  const { _id } = req.session.currentUser;
+  console.log("----- the user id-----", _id);
+  const { username } = req.body;
+  console.log("----- the user name-----", username);
 
-    const {_id} = req.session.currentUser; 
-    console.log("----- the user id-----",_id)
-    const { username } = req.body;
-    console.log("----- the user name-----",username)
+  const avatar = req.file ? req.file.path : undefined;
 
+  User.findByIdAndUpdate(_id, { username, avatar }, { new: true })
 
-
-    const avatar = req.file ? req.file.path : undefined; 
-
-    User.findByIdAndUpdate(_id, { username , avatar }, {new: true}) 
-
-      // avatar: newImg || req.session.user.avatar,
-    .then(user => {
+    // avatar: newImg || req.session.user.avatar,
+    .then((user) => {
       req.session.currentUser = user;
       res.redirect("/profile");
     })
-    
-    .catch(error => next(error))
 
-  
+    .catch((error) => next(error));
+});
+
 // router.post("/profile/delete", isLoggedOut, async (req, res) => {
 //   try {
-//     const userId = req.session.user._id; 
+//     const userId = req.session.user._id;
 //     const user = await User.findById(userId);
 
 //     if (!user) {
@@ -92,9 +87,8 @@ router.post("/profile", fileUploader.single("user-image"), (req, res, next) => {
 
 //     res.redirect("/");
 //   } catch (error) {
-//     console.error(error);  
+//     console.error(error);
 //   }
 // });
-
 
 module.exports = router;
