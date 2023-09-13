@@ -5,9 +5,9 @@ const Post = require("../models/Post.model");
 const fileUploader = require('../config/cloudinary.config');
 
 router.get("/profile", (req, res) => {
- 
-  
   res.render("profile-views/my-profile",{user: req.session.currentUser});
+
+
 });
 
 // router.get("/profile", isLoggedOut, async(req, res) => {
@@ -61,6 +61,7 @@ router.post("/profile", fileUploader.single("user-image"), (req, res, next) => {
     console.log("----- the user name-----",username)
 
 
+
     const avatar = req.file ? req.file.path : undefined; 
 
     User.findByIdAndUpdate(_id, { username , avatar }, {new: true}) 
@@ -72,11 +73,6 @@ router.post("/profile", fileUploader.single("user-image"), (req, res, next) => {
     })
     
     .catch(error => next(error))
-});
-
-router.get("/profile/delete", (req, res) => {
-  res.render("profile-views/my-profile");
-});
 
   
 // router.post("/profile/delete", isLoggedOut, async (req, res) => {
@@ -99,8 +95,6 @@ router.get("/profile/delete", (req, res) => {
 //     console.error(error);  
 //   }
 // });
-
-
 
 
 module.exports = router;
