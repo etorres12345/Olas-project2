@@ -1,15 +1,15 @@
-<h2>Singel post when clicked</h2>
+<h2>Single post when clicked via profile</h2>
 
 <div class="posts-container">
   <div class="post-card">
-    {{!-- {{#if userInSession._id == this.author._id}} --}}
+
       <div class="post-modify">
         <a href="/post/{{thePost._id}}/edit">Edit</a>
         <form action="/post/{{thePost._id}}/delete" method="POST">
          <button>Delete</button>
         </form>
       </div>
-    {{!-- {{/if}} --}}
+
     <div class="post-category">
       <h5>Category: {{thePost.category}}</h5>
     </div>
@@ -23,10 +23,6 @@
     <div class="post-meta">
       <p>Author: {{thePost.author.username}}</p>
       <p>Created: {{dateFormat thePost.createdAt "MMM Do YYYY, h:mm a" true}}</p>
-    </div>
-    <div class="back-nav">
-        <a href="/posts">All posts</a>
-        <a href="/profile">My profile</a>
     </div>
  </div> 
 </div>

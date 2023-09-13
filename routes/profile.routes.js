@@ -4,8 +4,9 @@ const User = require("../models/User.model");
 const Post = require("../models/Post.model");
 const fileUploader = require("../config/cloudinary.config");
 
+
 router.get("/profile", (req, res) => {
-  res.render("profile-views/my-profile", { user: req.session.currentUser });
+  res.render("profile-views/my-profile", { layout: "layouts/navbar", user: req.session.currentUser });
 });
 
 // router.get("/profile", isLoggedOut, async(req, res) => {
@@ -42,8 +43,19 @@ router.get("/profile", (req, res) => {
 //   } catch (error) {
 //     console.error(error);
 
-//   }
-// });
+
+  User.findById(_id)
+    .populate("posts")
+    .then((user) => {
+      let hasPosts;
+      if (user.posts.length > 0) {
+        hasPosts = true;
+        console.log("Yeessssss")
+      }
+      res.render("profile-views/my-profile.hbs", { user, hasPosts });
+    })
+    .catch((error) => next(error));
+});
 
 // router.get("/profile/:id/edit", (req, res) => {
 //   const {_id} = req.session.user;
@@ -51,11 +63,9 @@ router.get("/profile", (req, res) => {
 //   res.render("profile-views/my-profile");
 // });
 
-router.post("/profile", fileUploader.single("user-image"), (req, res, next) => {
+router.post("/profile", isLoggedIn, fileUploader.single("user-image"), (req, res, next) => {
   const { _id } = req.session.currentUser;
-  console.log("----- the user id-----", _id);
   const { username } = req.body;
-  console.log("----- the user name-----", username);
 
   const avatar = req.file ? req.file.path : undefined;
 

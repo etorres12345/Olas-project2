@@ -13,17 +13,20 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 hbs.registerHelper("dateFormat", require("handlebars-dateformat"));
-//helper to compare user with author
-hbs.handlebars.registerHelper("compareUser", function (p, q, options) {
-  console.log("====The 2 params =====:", p, q);
-  return p == q ? options.fn(this) : options.inverse(this);
-});
 
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);
+
+
+
+// app.use((req, res, next) => {
+//   res.locals.isLoggedIn = req.session.currentUser ? true : false;
+//   res.locals.isLoggedOut = !res.locals.isLoggedIn;
+//   next();
+// });
 
 // default value for title local
 const capitalize = require("./utils/capitalize");
