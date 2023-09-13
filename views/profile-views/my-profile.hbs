@@ -29,17 +29,18 @@
     </form>
 
     {{!-- <a href="/profile/edit" class="btn btn-primary">Edit</a> --}}
-</div>
+{{!-- </div> --}}
  
-
 {{#if hasPosts}}
   <div id="postsContainer">
     <h3>My Posts</h3>
-    {{#each userPosts}}
-      <div class="post">
-        <h2>{{ title }}</h2>
-         <p>{{ description }}</p>
-      </div>
+    {{#each user.posts}}
+      <a href="/post/{{this._id}}">
+        <div class="post">
+          <h2>{{ this.title }}</h2>
+          <p>{{ this.description }}</p>
+        </div>
+      </a>
     {{/each}}
   </div>
 {{else}}

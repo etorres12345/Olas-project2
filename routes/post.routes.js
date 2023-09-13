@@ -40,7 +40,6 @@ router.post(
                     $push: { posts: newPost._id },
                 });
             })
-            //TODO: or take user back to their own list of posts instead?
             .then(() => res.redirect("/posts"))
             .catch((error) => next(error));
     }
@@ -88,8 +87,7 @@ router.post("/post/:postId/delete", isLoggedIn, (req, res, next) => {
     const { postId } = req.params;
 
     Post.findByIdAndDelete(postId)
-        //TODO: or take user back to their own list of posts instead?
-        .then(() => res.redirect("/posts"))
+        .then(() => res.redirect("/profile"))
         .catch((error) => next(error));
 });
 
@@ -105,23 +103,7 @@ router.get("/post/:postId", isLoggedIn, (req, res) => {
         .catch((error) => next(error));
 });
 
-// // GET route to display only current user's posts
-// router.get("/posts/user/:id", (req, res) => {
-//     const { _id } = req.session.currentUser;
-//     console.log("+++++ the user: ", req.session.currentUser);
-//     console.log("+++++ ID +++:", _id);
-//     // posts/user/65005b04c40770270a18e809
-//     User.findById(_id)
-//         .populate("posts")
-//         .then((user) => {
-//             // console.log("/The user from DB/:", user);
-//             res.render("profile-views/my-profile.hbs", { user });
-//         })
-//         .catch((error) => next(error));
-// });
-
-// GET route to display all the posts
-
+// GET route to search all the posts
 router.post("/posts/search", isLoggedIn, (req, res) => {
     const keyword = req.body.keyword;
 
@@ -135,7 +117,7 @@ router.post("/posts/search", isLoggedIn, (req, res) => {
             res.status(500).send("Internal Server Error");
         });
 });
-
+// GET route to display all the posts
 router.get("/posts", isLoggedIn, (req, res, next) => {
     Post.find()
         .sort({ createdAt: -1 })

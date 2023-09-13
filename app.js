@@ -13,11 +13,6 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 hbs.registerHelper("dateFormat", require("handlebars-dateformat"));
-//helper to compare user with author
-hbs.handlebars.registerHelper("compareUser", function (p, q, options) {
-  console.log("====The 2 params =====:", p, q);
-  return p == q ? options.fn(this) : options.inverse(this);
-});
 
 const app = express();
 
