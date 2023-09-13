@@ -7,7 +7,8 @@ const { isLoggedIn } = require("../middleware/route-guard");
 // GET route to display form to create post
 
 router.get("/post-create", isLoggedIn, (req, res, next) => {
-  res.render("posts/create.hbs");
+  res.render("posts/create.hbs",  { layout: "layouts/navbar"} );
+  
 });
 
 // POST route to create post
@@ -53,7 +54,7 @@ router.get("/post/:postId/edit", isLoggedIn, (req, res, next) => {
 
   Post.findById(postId)
     .then((postToEdit) => {
-      res.render("posts/edit.hbs", { post: postToEdit });
+      res.render("posts/edit.hbs", { layout: "layouts/navbar", post: postToEdit });
     })
     .catch((error) => next(error));
 });
@@ -101,9 +102,9 @@ router.get("/post/:postId", isLoggedIn, (req, res) => {
   Post.findById(postId)
     .populate("author")
     .then((thePost) => {
-      res.render("posts/post-details.hbs", { thePost });
+      res.render("posts/post-details.hbs",  { layout: "layouts/navbar", thePost });
     })
-    .catch((error) => next(error));
+   .catch((error) => next(error));
 });
 
 // GET route to display only current user's posts
@@ -116,7 +117,7 @@ router.get("/posts/user/:id", (req, res) => {
     .populate("posts")
     .then((user) => {
       // console.log("/The user from DB/:", user);
-      res.render("profile-views/my-profile.hbs", { user });
+      res.render("profile-views/my-profile.hbs",  { layout: "layouts/navbar", user });
     })
     .catch((error) => next(error));
 });
@@ -141,7 +142,7 @@ router.get("/posts", isLoggedIn, (req, res, next) => {
   Post.find()
     .populate("author")
     .then((allPosts) => {
-      res.render("posts/posts.hbs", { posts: allPosts });
+      res.render("posts/posts.hbs", { layout: "layouts/navbar", posts: allPosts });
     })
     .catch((error) => next(error));
 });

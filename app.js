@@ -25,6 +25,14 @@ const app = express();
 require("./config")(app);
 require("./config/session.config")(app);
 
+
+
+// app.use((req, res, next) => {
+//   res.locals.isLoggedIn = req.session.currentUser ? true : false;
+//   res.locals.isLoggedOut = !res.locals.isLoggedIn;
+//   next();
+// });
+
 // default value for title local
 const capitalize = require("./utils/capitalize");
 const projectName = "olas-project2";

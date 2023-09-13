@@ -5,7 +5,7 @@ const Post = require("../models/Post.model");
 const fileUploader = require("../config/cloudinary.config");
 
 router.get("/profile", (req, res) => {
-  res.render("profile-views/my-profile", { user: req.session.currentUser });
+  res.render("profile-views/my-profile", { layout: "layouts/navbar", user: req.session.currentUser });
 });
 
 // router.get("/profile", isLoggedOut, async(req, res) => {
