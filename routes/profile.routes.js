@@ -1,6 +1,7 @@
 const router = require("express").Router();
+const { isLoggedOut } = require('../middleware/route-guard');
 
-router.get("/profile", (req, res) => {
+router.get("/profile", isLoggedOut, (req, res) => {
   res.render("profile-views/my-profile");
 });
 
@@ -16,16 +17,16 @@ router.get("/profile/delete", (req, res) => {
   res.render("profile-views/delete-profile");
 });
 
-router.get("/profile/create-post", (req, res) => {
-  res.render("profile-views/create-post");
-});
+// router.get("/profile/create-post", (req, res) => {
+//   res.render("profile-views/create-post");
+// });
 
-router.get("/profile/edit-post", (req, res) => {
-  res.render("profile-views/edit-post");
-});
+// router.get("/profile/edit-post", (req, res) => {
+//   res.render("profile-views/edit-post");
+// });
 
-router.get("/profile/delete-post", (req, res) => {
-  res.render("profile-views/delete-post");
-});
+// router.get("/profile/delete-post", (req, res) => {
+//   res.render("profile-views/delete-post");
+// });
 
 module.exports = router;

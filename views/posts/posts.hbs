@@ -10,20 +10,29 @@
 
 <div class="posts-container">
   {{#each posts}}
+
     <div class="post-card">
+      {{!-- {{#compareUser userInSession._id  this.author._id}} --}}
+      <div class="post-modify">
+        <a href="/post/{{this._id}}/edit">Edit</a>
+        <form action="/post/{{this._id}}/delete" method="POST">
+          <button>Delete</button>
+        </form>
+      </div>
+      {{!-- {{/compareUser}} --}}
       <div class="post-category">
-        <p>Category: {{this.category}}</p>
+        <h5>Category: {{this.category}}</h5>
       </div>
       <div class="post-title">
-        <h3>Title: {{this.title}}</h3>
+        <h5>Title: {{this.title}}</h5>
       </div>
       <div class="post-content">
-        <p>Desc: {{this.description}}</p>
-        {{!-- <img src={{this.mediaUrl}} alt=""> --}}
+        <p>Description: {{this.description}}</p>
+        <img src="{{this.mediaUrl}}" alt="" />
       </div>
       <div class="post-meta">
         <p>Author: {{this.author.username}}</p>
-        <p>Timestamp: {{this.timeStamps}}</p>
+        <p>Created: {{dateFormat this.createdAt "MMM Do YYYY, h:mm a" true}}</p>
       </div>
     </div>
   {{/each}}
