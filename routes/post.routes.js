@@ -123,7 +123,7 @@ router.get("/posts/user/:id", (req, res) => {
 
 // GET route to display all the posts
 
-router.post("/posts/search", (req, res) => {
+router.post("/posts/search", isLoggedIn, (req, res) => {
   const keyword = req.body.keyword;
 
   Post.find({ $text: { $search: keyword } })
