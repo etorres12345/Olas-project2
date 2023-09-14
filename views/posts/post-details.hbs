@@ -1,7 +1,7 @@
     {{> postpartial thePost}}
     <div class="post-modify">
-      <a href="/post/{{this._id}}/edit">Edit</a>
-      <form action="/post/{{this._id}}/delete" method="POST">
+      <a href="/post/{{thePost._id}}/edit">Edit</a>
+      <form action="/post/{{thePost._id}}/delete" method="POST">
         <button>Delete</button>
       </form>
     </div>

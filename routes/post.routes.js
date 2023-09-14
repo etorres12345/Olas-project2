@@ -7,7 +7,7 @@ const axios = require("axios");
 
 // GET route to display form to create post
 router.get("/post-create", isLoggedIn, (req, res, next) => {
-  res.render("posts/create.hbs", { layout: "layouts/navbar" });
+  res.render("posts/create.hbs", { layout: "layouts/navbar", user: req.session.currentUser });
 });
 
 // POST route to create post
@@ -28,7 +28,7 @@ router.post(
     // make sure users fill all mandatory fields:
     if (!title || !category || !description) {
       res.render("posts/create.hbs", {
-        errorMessage: "Category, title and description must be filled in.",
+        errorMessage: "Category, title and description must be filled in.", layout: "layouts/navbar", user: req.session.currentUser
       });
       return;
     }
@@ -54,6 +54,7 @@ router.get("/post/:postId/edit", isLoggedIn, (req, res, next) => {
       res.render("posts/edit.hbs", {
         layout: "layouts/navbar",
         post: postToEdit,
+        user: req.session.currentUser
       });
     })
     .catch((error) => next(error));
@@ -104,6 +105,7 @@ router.get("/post/:postId", isLoggedIn, (req, res) => {
       res.render("posts/post-details.hbs", {
         layout: "layouts/navbar",
         thePost,
+        user: req.session.currentUser
       });
     })
     .catch((error) => next(error));
@@ -116,7 +118,7 @@ router.post("/posts", isLoggedIn, (req, res) => {
   Post.find({ $text: { $search: keyword } })
     .then((posts) => {
       console.log("Found this!");
-      res.render("posts/posts.hbs", { layout: "layouts/navbar", posts });
+      res.render("posts/posts.hbs", { layout: "layouts/navbar", posts, user: req.session.currentUser });
     })
     .catch((err) => {
       console.error(err);
