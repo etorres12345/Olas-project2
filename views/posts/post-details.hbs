@@ -1,40 +1,9 @@
-<h2>Single post when clicked via profile</h2>
-{{!-- 
-<div class="posts-container">
-  <div class="post-card">
-
-      <div class="post-modify">
-        <a href="/post/{{thePost._id}}/edit">Edit</a>
-        <form action="/post/{{thePost._id}}/delete" method="POST">
-         <button>Delete</button>
-        </form>
-      </div>
-
-    <div class="post-category">
-      <h5>Category: {{thePost.category}}</h5>
-    </div>
-    <div class="post-title">
-      <h5>Title: {{thePost.title}}</h5>
-    </div>
-    <div class="post-content">
-      <p>Description: {{thePost.description}}</p>
-      <img src="{{thePost.mediaUrl}}" alt="">
-    </div>
-    <div class="post-meta">
-      <p>Author: {{thePost.author.username}}</p>
-      <p>Created: {{thePost.createdAt "MMM Do YYYY, h:mm a" true}}</p>
-    </div>
- </div> 
-</div>
- --}}
-
-  {{#each thePost}}
-    {{> postpartial this}}
+    {{> postpartial thePost}}
     <div class="post-modify">
       <a href="/post/{{this._id}}/edit">Edit</a>
       <form action="/post/{{this._id}}/delete" method="POST">
         <button>Delete</button>
       </form>
     </div>
-{{/each}}  
+
 

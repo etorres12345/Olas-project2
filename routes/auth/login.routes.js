@@ -50,7 +50,12 @@ router.post('/login', (req, res, next) => {
 // };
 
 router.post('/logout', (req, res, next) => {
+
     req.session.destroy(err => {
+        res.cookie('connect.sid', null, {
+            expires: new Date('Thu, 01 Jan 1970 00:00:00 UTC'),
+            httpOnly: true,
+        });
         if (err) next(err);
         res.redirect("/");
     });
