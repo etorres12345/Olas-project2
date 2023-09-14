@@ -8,50 +8,48 @@
   </head>
   <header>
     <nav>
-      <a href="/posts">
-        <img
-          src="/images/logo-vertical navbar.png"
-          alt="logo"
-          class="logo-vertical-navbar"
-        />
-      </a>
-      <div class="category-btn">
-        <img
-          src="/images/btn-category sell.png"
-          alt="category sell/rent button"
-          id="sell-btn"
-        />
-        <img
-          src="/images/btn-category-tips.png"
-          alt="category tips button"
-          id="tips-btn"
-        />
-        <img
-          src="/images/btn-category-meetup.png"
-          alt="category meetup button"
-          id="meetup-btn"
-        />
-      </div>
-      <div class="create-post">
-        <a href="/post-create">
-          <img src="/images/create-btn.png" alt="create post button" />
+      <div class="navbar-wrapper">
+        <a href="/posts">
+          <img src="/images/logo-vertical navbar.png" alt="logo" class="logo-vertical-navbar"/>
         </a>
-      </div>
-      <div class="profile-avatar">
-        <a href="/profile">
-          <img src="{{user.avatar}}" alt="user avatar" />
-        </a>
-      </div>
-      <div class="logout">
-        <form id="logout-form" action="/logout" method="POST">
-          <button>Logout</button>
-        </form>
+        <div class="category-btn">
+          <div class="btn-wrap">
+            <img src="/images/btn-category sell.png" alt="category sell/rent button" id="sell-btn" data-category="sell/rent"/>
+            <p class="img__description">sell/rent</p>
+          </div>
+           <div class="btn-wrap">
+            <img src="/images/btn-category-tips.png" alt="category tips button" id="tips-btn" data-category="tips"/>
+            <p class="img__description">tips</p>
+          </div>
+          <div class="btn-wrap">
+            <img src="/images/btn-category-meetup.png" alt="category meetup button" id="meetup-btn" data-category="meetup"/>
+             <p class="img__description">meetup</p>
+          </div>
+        </div>
+        <div class="create-post">
+          <a href="/post-create">
+            <img src="/images/create-btn.png" alt="create post button" />
+          </a>
+        </div>
+        <div class="profile-avatar">
+          <a href="/profile">
+            <img src="{{user.avatar}}" alt="user avatar" />
+          </a>
+        </div>
+        <div class="logout">
+          <form id="logout-form" action="/logout" method="POST">
+            <button>Logout</button>
+          </form>
+        </div>
       </div>
     </nav>
   </header>
   <body>
-  
+
+  <main id="navbar-hbs">
+
     {{{body}}}
+   </main>
     <script src="/js/script.js"></script>
   </body>
 </html>

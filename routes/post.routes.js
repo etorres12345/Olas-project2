@@ -8,7 +8,6 @@ const axios = require('axios');
 // GET route to display form to create post
 
 router.get("/post-create", isLoggedIn, (req, res, next) => {
-
     res.render("posts/create.hbs", { layout: "layouts/navbar" });
 });
 
@@ -43,7 +42,7 @@ router.post(
                 });
             })
             .then(() => res.redirect("/posts"))
-            .catch(error => next(error));
+            .catch((error) => next(error));
     }
 );
 
@@ -53,7 +52,10 @@ router.get("/post/:postId/edit", isLoggedIn, (req, res, next) => {
 
     Post.findById(postId)
         .then((postToEdit) => {
-            res.render("posts/edit.hbs", { layout: "layouts/navbar", post: postToEdit });
+            res.render("posts/edit.hbs", {
+                layout: "layouts/navbar",
+                post: postToEdit,
+            });
         })
         .catch((error) => next(error));
 });
@@ -95,25 +97,27 @@ router.post("/post/:postId/delete", isLoggedIn, (req, res, next) => {
 
 // GET route to display single post e.g. via profile or main post page
 router.get("/post/:postId", isLoggedIn, (req, res) => {
-
     const { postId } = req.params;
 
     Post.findById(postId)
         .populate("author")
         .then((thePost) => {
-            res.render("posts/post-details.hbs", { layout: "layouts/navbar", thePost });
+            res.render("posts/post-details.hbs", {
+                layout: "layouts/navbar",
+                thePost,
+            });
         })
         .catch((error) => next(error));
 });
 
 // GET route to search all the posts
-router.post("/posts/search", isLoggedIn, (req, res) => {
+router.post("/posts", isLoggedIn, (req, res) => {
     const keyword = req.body.keyword;
 
     Post.find({ $text: { $search: keyword } })
         .then((posts) => {
             console.log("Found this!");
-            res.render("posts/posts.hbs", { posts });
+            res.render("posts/posts.hbs", { layout: "layouts/navbar", posts });
         })
         .catch((err) => {
             console.error(err);
@@ -151,16 +155,18 @@ router.get("/posts", isLoggedIn, async (req, res, next) => {
             long: -105.2295009
         }
     ]
-    let endpoints = []
 
-    for (i = 0; i < beaches.length; i++) {
-        endpoints.push(
-            `${baseWeatherURL}/forecast?latitude=${beaches[i].lat}&longitude=${beaches[i].long}&current_weather=true`);
-    }
-
+    const endpoints = beaches.map(beach => `${baseWeatherURL}/forecast?latitude=${beach.lat}&longitude=${beach.long}&current_weather=true`)
+    console.log("Endpoints are =======", endpoints);
+    // let endpoints = []
+    // for (i = 0; i < beaches.length; i++) {
+    //     endpoints.push(
+    //         `${baseWeatherURL}/forecast?latitude=${beaches[i].lat}&longitude=${beaches[i].long}&current_weather=true`);
+    // }
 
     const data = await axios.all(endpoints.map((endpoint) =>
         axios.get(endpoint)))
+
     let beachInformation =
         [
             {
@@ -185,8 +191,9 @@ router.get("/posts", isLoggedIn, async (req, res, next) => {
                 beachData: data[4].data.current_weather
             }
         ];
-
-    Post.find()
+    const { category } = req.query;
+    const filter = category ? { category } : {};
+    Post.find(filter)
         .sort({ createdAt: -1 })
         .populate("author")
         .then((allPosts) => {

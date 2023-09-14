@@ -2,20 +2,60 @@
     <div class="nav-container">
         <nav class="nav-home">
             <div class="nav-img">
-                <a href="/"><img src="images/logo-home.png" alt="ola logo"></a>
+                <a href="/"><img src="images/logo-home page-green.png" alt="ola logo"></a>
             </div>
-            <div>
+            <div class="navbar-links">
                 <a href="/about-us">About Us</a>
                 <a href="/login">Login</a>
-                <a href="/signup">Sign Up</a>
+                <a class="nav-btn" href="/signup">Sign Up</a>
             </div>
         </nav>   
     </div>
     <section class="hero">
-        <img src="images/hero-img.png" alt="waves">
+         <h1>Ride the Wave of Connection with Ola - Where Surfers Meet, Share, and Stoke Together!</h1>
+        {{!-- <img src="images/hero-img.png" alt="waves"> --}}
+        <video width="100%" height="100%" autoplay muted loop>
+            <source src="videos/olas-orilla.mp4" type="video/mp4">
+            "Your browser does not support the video tag."
+        </video>
     </section>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <img src="images/slider container.png" style="width:80%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  <img src="images/slider2-container.png" style="width:80%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <img src="images/slider3-container.png" style="width:80%">
+  <div class="text">Caption Three</div>
+</div>
+
+{{!-- <a class="prev" onclick="plusSlides(-1)">❮</a> --}}
+<img src="images/icons/icon-slider-prev.png" class="prev" onclick="plusSlides(-1)">
+<img src="images/icons/icon-slider-next.png" class="next" onclick="plusSlides(1)">
+{{!-- <a class="next" onclick="plusSlides(1)">❯</a> --}}
+
+</div>
+
     <footer class="footer">
-    <div><img src="images/logo-footer.png" alt="footer logo"></div>
-    <div>Copyright © 2023  All rights reserved</div>
+       
+        <div class="footer-center">
+            <img src="images/logo-footer.png" alt="footer logo">
+            <p>Copyright © 2023  All rights reserved</p>
+        </div>
+        <div class="audio-wrapper">
+             <audio id="audio" controls preload autoplay>
+                <source src="audios/waives.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
     </footer>
 </div>
