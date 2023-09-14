@@ -1,45 +1,50 @@
 <div class="profile-container">
 
-  <h1>Surfer num</h1> 
+  {{!-- <h1>Surfer num</h1>  --}}
   {{!-- here a random number --}}
   <div class="profile-wrapper">
     {{!-- <img src="{{user.avatar}}" alt="User Avatar" class="avatar" /> --}}
     <p>{{user.avatar}}</p>
-    {{!-- <img src="/images/icons/edit-icon.png" alt="pencil-icon" onclick="openPopup({{}})" > --}}
-    <img id="profilePencilIcon" src="./images/icons/edit-icon.png" /> 
+    <div class="profile-name-wrapper">
+      <h2>{{ user.username }}  </h2>
+      <img id="profilePencilIcon" src="./images/icons/edit-icon.png" /> 
+    </div>
+   
     
-    <h2>{{ user.username }}  </h2>
-    <p>{{user.caption}}</p>
+    {{!-- <p>{{user.caption}}</p> --}}
   </div>
 
 {{!-- if the user has post we can display this container otherwise none --}}
 
-{{!-- <div id="popupEditForm" style="display: none;"> --}}
-  <h2>Update your profile 👇</h2>
-  {{!-- <img src="/images/close-btn.png" alt="close icon"  onclick="closePopup()"> --}}
-  
-  <img id="closePopupBtn" src="./images/close-btn.png" alt="">
-  <form action="/profile" method="POST" enctype="multipart/form-data"> 
-  <div class="form-profile">
-    <label for="username">username</label>
-      <input type="text" name="username" value="{{user.username}}" >
-    <label for="file">Add your avatar</label>
-      <input type="file" name="user-image" class="form-control-file" /> 
+<div id="popupEditForm" style="display: none;">
+  <div class="popup-wrapper">
+    <h2>Update your profile 👇</h2> 
+    <img id="closePopupBtn" src="./images/close-btn.png" alt="">
+    <form action="/profile" method="POST" enctype="multipart/form-data"> 
+    <div class="form-profile">
+      <label for="username">username</label>
+        <input type="text" name="username" value="{{user.username}}" >
+      <label for="file">Add your avatar</label>
+        <input type="file" name="user-image" class="form-control-file" /> 
+      </div>
+        <button type="submit" class="save-btn">save</button>
+      </form>
     </div>
-      <button type="submit" class="btn btn-primary">Save</button>
-    </form>
-
+</div>
     {{!-- <a href="/profile/edit" class="btn btn-primary">Edit</a> --}}
 {{!-- </div> --}}
  
 {{#if hasPosts}}
   <div id="postsContainer">
-    <h3>My Posts</h3>
+    <h2>My Posts</h2>
     {{#each user.posts}}
       <a href="/post/{{this._id}}">
         <div class="post">
-          <h2>{{ this.title }}</h2>
-          <p>{{ this.description }}</p>
+          <h3>
+              <img src="./images/icons/icon-quotes-open.png" alt="">
+              {{ this.title }}
+              <img src="./images/icons/icon-quotes-close.png" alt="">
+            </h3>
         </div>
       </a>
     {{/each}}
@@ -47,15 +52,6 @@
 {{else}}
   <p>No posts yet. Start sharing your surf adventures!</p>
 {{/if}}
-
- <button id="deleteProfileBtn" class="btn btn-primary">Delete Profile</button>
-</div>
-
-
-
- 
- 
-
   
 {{!-- {{#if userInSession}}
   <h2>Welcome, {{ userInSession.username }}!</h2>
