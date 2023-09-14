@@ -3,6 +3,7 @@ const Post = require("../models/Post.model");
 const User = require("../models/User.model");
 const fileUploader = require("../config/cloudinary.config");
 const { isLoggedIn } = require("../middleware/route-guard");
+const axios = require('axios');
 
 // GET route to display form to create post
 
@@ -120,15 +121,78 @@ router.post("/posts/search", isLoggedIn, (req, res) => {
         });
 });
 // GET route to display all the posts
-router.get("/posts", isLoggedIn, (req, res, next) => {
+router.get("/posts", isLoggedIn, async (req, res, next) => {
+
+    const baseWeatherURL = "https://api.open-meteo.com/v1";
+    const beaches = [
+        {
+            name: "Waikiki Beach, Hawaii",
+            lat: 21.2741809,
+            long: -157.8246711
+        },
+        {
+            name: "Maui, Hawaii",
+            lat: 20.8029568,
+            long: -156.3106833
+        },
+        {
+            name: "Oahu's North Shore, Hawaii",
+            lat: 21.641115188598633,
+            long: -157.9198455810547
+        },
+        {
+            name: "Huntington Beach(Surf City, USA), California",
+            lat: 33.6783336,
+            long: -118.0000166
+        },
+        {
+            name: "Punta de Mita, Mexico",
+            lat: 20.6606771,
+            long: -105.2295009
+        }
+    ]
+    let endpoints = []
+
+    for (i = 0; i < beaches.length; i++) {
+        endpoints.push(
+            `${baseWeatherURL}/forecast?latitude=${beaches[i].lat}&longitude=${beaches[i].long}&current_weather=true`);
+    }
+
+
+    const data = await axios.all(endpoints.map((endpoint) =>
+        axios.get(endpoint)))
+    let beachInformation =
+        [
+            {
+                name: beaches[0].name,
+                beachData: data[0].data.current_weather
+            },
+
+            {
+                name: beaches[1].name,
+                beachData: data[1].data.current_weather
+            },
+            {
+                name: beaches[2].name,
+                beachData: data[2].data.current_weather
+            },
+            {
+                name: beaches[3].name,
+                beachData: data[3].data.current_weather
+            },
+            {
+                name: beaches[4].name,
+                beachData: data[4].data.current_weather
+            }
+        ];
+
     Post.find()
         .sort({ createdAt: -1 })
         .populate("author")
         .then((allPosts) => {
-            res.render("posts/posts.hbs", { layout: "layouts/navbar", posts: allPosts });
+            res.render("posts/posts.hbs", { layout: "layouts/navbar", posts: allPosts, beachInformation });
         })
         .catch((error) => next(error));
-
 });
 
 module.exports = router;

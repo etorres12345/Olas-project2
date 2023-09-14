@@ -38,3 +38,15 @@
     </div>
   {{/each}}
 </div>
+
+
+<div>
+<h3> Current conditions at the top 5 beaches</h3>
+{{#each beachInformation}}
+
+  <h5>Beach: {{this.name}}</h5>
+  <p>Temperature: {{this.beachData.temperature}}°C</p>
+  <p>Wind speed: {{this.beachData.windspeed}}km/h</p>
+  <p>Wind direction: {{this.beachData.windspeed}} kts</p>
+{{/each}}
+</div>
