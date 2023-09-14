@@ -13,6 +13,7 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 hbs.registerHelper("dateFormat", require("handlebars-dateformat"));
+hbs.registerPartials(__dirname + '/views/partials');
 
 const app = express();
 

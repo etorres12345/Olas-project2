@@ -27,22 +27,27 @@ router.get("/profile", (req, res) => {
 //   res.render("profile-views/my-profile");
 // });
 
-router.post("/profile", isLoggedIn, fileUploader.single("user-image"), (req, res, next) => {
-  const { _id } = req.session.currentUser;
-  const { username } = req.body;
+router.post(
+  "/profile",
+  isLoggedIn,
+  fileUploader.single("user-image"),
+  (req, res, next) => {
+    const { _id } = req.session.currentUser;
+    const { username } = req.body;
 
-  const avatar = req.file ? req.file.path : undefined;
+    const avatar = req.file ? req.file.path : undefined;
 
-  User.findByIdAndUpdate(_id, { username, avatar }, { new: true })
+    User.findByIdAndUpdate(_id, { username, avatar }, { new: true })
 
-    // avatar: newImg || req.session.user.avatar,
-    .then((user) => {
-      req.session.currentUser = user;
-      res.redirect("/profile");
-    })
+      // avatar: newImg || req.session.user.avatar,
+      .then((user) => {
+        req.session.currentUser = user;
+        res.redirect("/profile");
+      })
 
-    .catch((error) => next(error));
-});
+      .catch((error) => next(error));
+  }
+);
 
 // router.post("/profile/delete", isLoggedOut, async (req, res) => {
 //   try {
