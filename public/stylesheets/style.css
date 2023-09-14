@@ -526,6 +526,10 @@ audio {
   color: grey;
   margin-bottom: 25px;
 }
+.post-content input[type=text]:focus {
+  outline: none;
+  border: 3px solid #22A699 !important;
+}
 .post-content textarea[type="textarea"] {
   border: 2px solid #22A699;
   border-radius: 20px;
@@ -535,6 +539,10 @@ audio {
   font-size: 20px;
   color: grey;
   margin-bottom: 25px;
+}
+.post-content textarea[type="textarea"]:focus {
+  outline: none;
+  border: 3px solid #22A699 !important;
 }
 .file-upload label {
   display: flex;
@@ -553,9 +561,14 @@ audio {
   color: grey;
   margin: 10px 0 25px 0;
 }
+.file-upload input[type=file]:focus {
+  outline: none;
+  border: 3px solid #22A699 !important;
+}
 .submit-cancel {
   display: flex;
   justify-content: center;
+  justify-content: space-evenly;
 }
 .submit-cancel  button{
   border-radius: 33px;
