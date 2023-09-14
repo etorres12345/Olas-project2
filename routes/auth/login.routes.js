@@ -1,19 +1,12 @@
-//const express = require('express');
-//const loginRouter = express.Router();
 const router = require('express').Router();
 const bcryptjs = require('bcryptjs');
 const User = require('../../models/User.model');
 const { isLoggedOut } = require('../../middleware/route-guard');
 
-// router.get('/login', (req, res) => res.render('auth/login'));
 
 router.get('/login', isLoggedOut, (req, res) => {
     res.render('auth/login', { userInSession: req.session.currentUser });
 });
-
-// router.get('/posts', (req, res) => {
-//     res.render('posts', { userInSession: req.session.currentUser });
-// });
 
 router.post('/login', (req, res, next) => {
     const { username, password } = req.body;
@@ -40,14 +33,6 @@ router.post('/login', (req, res, next) => {
         })
         .catch(error => next(error));
 });
-
-// const isAuthenticated = (req, res, next) => {
-//     if (req.session.currentUser) {
-//         next();
-//     } else {
-//         res.redirect('/login');
-//     }
-// };
 
 router.post('/logout', (req, res, next) => {
 

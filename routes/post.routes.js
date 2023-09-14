@@ -123,77 +123,77 @@ router.post("/posts", isLoggedIn, (req, res) => {
       res.status(500).send("Internal Server Error");
     });
 });
-// GET route to display all the posts
+// GET route to display all the posts and render API info
 router.get("/posts", isLoggedIn, async (req, res, next) => {
 
 
-    const baseWeatherURL = "https://api.open-meteo.com/v1";
-    const beaches = [
-        {
-            name: "Waikiki Beach, Hawaii",
-            lat: 21.2741809,
-            long: -157.8246711
-        },
-        {
-            name: "Maui, Hawaii",
-            lat: 20.8029568,
-            long: -156.3106833
-        },
-        {
-            name: "Oahu's North Shore, Hawaii",
-            lat: 21.641115188598633,
-            long: -157.9198455810547
-        },
-        {
-            name: "Huntington Beach(Surf City, USA), California",
-            lat: 33.6783336,
-            long: -118.0000166
-        },
-        {
-            name: "Punta de Mita, Mexico",
-            lat: 20.6606771,
-            long: -105.2295009
-        }
-    ]
+  const baseWeatherURL = "https://api.open-meteo.com/v1";
+  const beaches = [
+    {
+      name: "Waikiki Beach, Hawaii",
+      lat: 21.2741809,
+      long: -157.8246711
+    },
+    {
+      name: "Maui, Hawaii",
+      lat: 20.8029568,
+      long: -156.3106833
+    },
+    {
+      name: "Oahu's North Shore, Hawaii",
+      lat: 21.641115188598633,
+      long: -157.9198455810547
+    },
+    {
+      name: "Huntington Beach(Surf City, USA), California",
+      lat: 33.6783336,
+      long: -118.0000166
+    },
+    {
+      name: "Punta de Mita, Mexico",
+      lat: 20.6606771,
+      long: -105.2295009
+    }
+  ]
 
-    const endpoints = beaches.map(beach => `${baseWeatherURL}/forecast?latitude=${beach.lat}&longitude=${beach.long}&current_weather=true`)
+  const endpoints = beaches.map(beach => `${baseWeatherURL}/forecast?latitude=${beach.lat}&longitude=${beach.long}&current_weather=true`)
 
-    const data = await axios.all(endpoints.map((endpoint) =>
-        axios.get(endpoint)))
+  const data = await axios.all(endpoints.map((endpoint) =>
+    axios.get(endpoint)))
 
-    let beachInformation =
-        [
-            {
-                name: beaches[0].name,
-                beachData: data[0].data.current_weather
-            },
+  let beachInformation =
+    [
+      {
+        name: beaches[0].name,
+        beachData: data[0].data.current_weather
+      },
 
-            {
-                name: beaches[1].name,
-                beachData: data[1].data.current_weather
-            },
-            {
-                name: beaches[2].name,
-                beachData: data[2].data.current_weather
-            },
-            {
-                name: beaches[3].name,
-                beachData: data[3].data.current_weather
-            },
-            {
-                name: beaches[4].name,
-                beachData: data[4].data.current_weather
-            }
-        ];
-    const { category } = req.query;
-    const filter = category ? { category } : {};
-    Post.find(filter)
-        .sort({ createdAt: -1 })
-        .populate("author")
-        .then((allPosts) => {
-            res.render("posts/posts.hbs", { layout: "layouts/navbar", posts: allPosts, beachInformation });
-        })
-        .catch((error) => next(error));
+      {
+        name: beaches[1].name,
+        beachData: data[1].data.current_weather
+      },
+      {
+        name: beaches[2].name,
+        beachData: data[2].data.current_weather
+      },
+      {
+        name: beaches[3].name,
+        beachData: data[3].data.current_weather
+      },
+      {
+        name: beaches[4].name,
+        beachData: data[4].data.current_weather
+      }
+    ];
+  const { category } = req.query;
+  const filter = category ? { category } : {};
+  Post.find(filter)
+    .sort({ createdAt: -1 })
+    .populate("author")
+    .then((allPosts) => {
+      res.render("posts/posts.hbs", { layout: "layouts/navbar", posts: allPosts, beachInformation, user: req.session.currentUser });
+    })
+    .catch((error) => next(error));
 
 });
 
