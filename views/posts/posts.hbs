@@ -1,13 +1,17 @@
 <script src="../js/script.js"></script>
 
-<h2>All posts List when logged in</h2>
+{{!-- <h2>All posts List when logged in</h2> --}}
+<div class="search-navbar">
+  <div class="search-wrapper">
+    {{!-- <img src="/images/icons/search-icon (2).png" id="search-image" alt="Search" /> --}}
+    <form id="search-form" action="/posts" method="POST">
+      <input type="text" name="keyword" placeholder="Search..." />
+      <button class="search" type="submit">Search</button>
+      <button class="reset" type="button" id="reset-button">Reset</button>
+    </form>
+  </div>
+</div>
 
-<img src="/images/icons/search-icon (2).png" id="search-image" alt="Search" />
-<form id="search-form" action="/posts" method="POST">
-  <input type="text" name="keyword" placeholder="Search..." />
-  <button type="submit">Search</button>
-  <button type="button" id="reset-button">Reset</button>
-</form>
 
 <div class="posts-container">
   {{#each posts}}
@@ -37,4 +41,16 @@
       </div>
     </div>
   {{/each}}
+</div>
+
+
+<div>
+<h3> Current conditions at the top 5 beaches</h3>
+{{#each beachInformation}}
+
+  <h5>Beach: {{this.name}}</h5>
+  <p>Temperature: {{this.beachData.temperature}}°C</p>
+  <p>Wind speed: {{this.beachData.windspeed}}km/h</p>
+  <p>Wind direction: {{this.beachData.windspeed}} kts</p>
+{{/each}}
 </div>
