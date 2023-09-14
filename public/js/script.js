@@ -28,21 +28,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const searchImage = document.getElementById("search-image");
   const resetButton = document.getElementById("reset-button");
+  resetButton &&
+    resetButton.addEventListener("click", function () {
+      console.log("resetting!");
+      window.location.href = "/posts";
+    });
+});
 
-  searchImage.addEventListener("click", function () {
-    const keyword = prompt("Enter a keyword to search for:");
+document.addEventListener("DOMContentLoaded", function () {
+  const categoryButtons = document.querySelectorAll("[data-category]");
 
-    if (keyword) {
-      const searchForm = document.getElementById("search-form");
-      searchForm.querySelector('input[name="keyword"]').value = keyword;
-      searchForm.submit();
-    }
-  });
-  resetButton.addEventListener("click", function () {
-    console.log("resetting!");
-    window.location.reload();
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      console.log("SEARCHING BY CATEGORY!");
+      const category = button.getAttribute("data-category");
+
+      window.location.href = `/posts?category=${category}`;
+    });
   });
 });
 
