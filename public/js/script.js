@@ -28,20 +28,56 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const searchImage = document.getElementById("search-image");
   const resetButton = document.getElementById("reset-button");
+  resetButton &&
+    resetButton.addEventListener("click", function () {
+      console.log("resetting!");
+      window.location.href = "/posts";
+    });
+});
 
-  searchImage.addEventListener("click", function () {
-    const keyword = prompt("Enter a keyword to search for:");
+document.addEventListener("DOMContentLoaded", function () {
+  const categoryButtons = document.querySelectorAll("[data-category]");
 
-    if (keyword) {
-      const searchForm = document.getElementById("search-form");
-      searchForm.querySelector('input[name="keyword"]').value = keyword;
-      searchForm.submit();
-    }
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      console.log("SEARCHING BY CATEGORY!");
+      const category = button.getAttribute("data-category");
+
+      window.location.href = `/posts?category=${category}`;
+    });
   });
-  resetButton.addEventListener("click", function () {
-    console.log("resetting!");
-    window.location.reload();
-  });
+});
+
+// carousel
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+ 
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+
+// autoplay audio
+const audio = document.getElementById("audio");
+
+window.addEventListener("load", function() {
+  
+  audio.play();
 });

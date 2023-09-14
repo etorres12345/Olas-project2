@@ -11,7 +11,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: '/images/logo-green-login.png'
+      default: '/images/avatar2.png'
     },
     posts: [
       {

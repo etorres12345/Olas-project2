@@ -1,19 +1,323 @@
 * {
   margin: 0;
-  padding: 0
+  padding: 0;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Mooli', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+}
+/* home page */
+.nav-container {
+  width: 100%;
+  position: fixed;
+  z-index: 1 
+}
+.nav-home {
+    padding-top: 10px;
+    width: 80%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+}
+.navbar-links {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-links a {
+  color: white;
+  font-weight: bolder;
+  font-size: 25px;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+.navbar-links a:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 5px;
+  bottom: -4px;
+  left: 0;
+  background-color: #22A699;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.navbar-links a:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+  color: #22A699; 
+}
+.navbar-links a:hover {
+  color:#22A699;
+}
+
+.navbar a:hover a:nth-child(3):not(:hover) {
+  color: white;
+}
+.nav-btn {
+  background-color: #22A699;
+  padding: 15px;
+  border-radius: 30px;
+}
+.nav-btn a:hover a:nth-child(3) {
+  color: white !important;
+  background-color: #22a6996b !important;
+}
+.hero {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; 
+  position: relative;
+}
+.hero h1 {
+  font-size: 45px;
+  color: white;
+  position: absolute;
+  top: 40%;
+  width: 70%;
+  left: 10%;
+  font-family: 'Knewave', cursive;
+}
+.hero video {
+  object-fit: fill; 
+  margin: 0;
+}
+
+/* Slider */
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+.slideshow-container {
+  max-width: 88%;
+  position: relative;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;  
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+.next {
+  right: 15%;
+  border-radius: 3px 0 0 3px;
+}
+.prev {
+  left: 0%;
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
 /* profile page */
 #profilePencilIcon {
-  /* background-image: url('./images/icons/edit-icon.png');
-  background-repeat: no-repeat; */
   width: 30px;
   height: 30px;
 }
 
 #closePopupBtn {
-  /* background-image: url('../images/close-btn.png');
-  background-repeat: no-repeat; */
   width: 30px;
   height: 30px;
+}
+
+/* footer */
+footer {
+  background-color: #22A699;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-center {
+  display: flex;
+  align-items: center;
+}
+.footer-center img {
+  width: 30px;
+  margin-right: 5px;
+}
+.footer-center p {
+  color: white;
+  font-size: 12px;
+}
+.audio-wrapper {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+audio {
+  width: 100px;
+  height: 30px;
+}
+/* navbar vertical */
+#vertical-navbar {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 8%;
+  background-color: #22A699 ;
+  height: 100%; 
+  position: fixed; 
+  overflow: auto; 
+  left: 3%;
+}
+.navbar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.navbar-wrapper img {
+  width: 80px;
+  height: 80px;
+}
+.category-btn {
+  display: flex;
+  flex-direction: column;
+}
+.category-btn img {
+  width: 50px;
+  height: 50px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border-radius: 100%;
+  position: relative;
+}
+.category-btn img:hover {
+  transform: scale(1.05);
+  border-radius: 100%; 
+}
+.btn-wrap {
+  position: relative;
+}
+
+.btn-wrap:hover .img__description {
+  visibility: visible;
+  opacity: 1;
+}
+.img__description {
+  position: absolute;
+  /* top: 0; */
+  padding-top: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s, visibility .2s;
+  text-align: center;
+}
+.create-post img {
+  width: 50px;
+  height: 50px;
+}
+.profile-avatar p {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  border: 1px solid white;
+  text-align: center;
+}
+.logout button {
+  background-color: transparent;
+  color: white;
+  font-size: 18px;
+  background: none;
+  border:none;
+  font-family: 'Mooli', sans-serif;
+  cursor: pointer;
+  font-weight: bolder;
+}
+/* main container */
+#navbar-hbs {
+  margin-left: 15%;
+  padding:1px 16px;
+  height:1000px;
+  width: 60%;
+  overflow-x: hidden;
+}
+/* list of posts page */
+.search-navbar {
+  padding-top: 25px;
+  width: 80%;
+  height: 90px;
+  position: fixed;
+  background-color: white;
+  top: 0;
+}
+.search-wrapper {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+}
+.search-wrapper img {
+  width: 40px;
+}
+#search-form input[type=text] {
+  border: 2px solid #22A699;
+  border-radius: 33px;
+  background-color: white;
+  background-image: url("/images/icons/search-icon (2).png");
+  background-repeat: no-repeat;
+  padding: 15px 5px 12px 50px;
+  background-position: left;
+}
+#search-form input[type=text]:focus {
+  outline: none;
+  border: 3px solid #22A699 !important;
+}
+.search  {
+    width: 100px;
+    border-radius: 33px;
+    background-color: #22A699;
+    color: white;
+    font-size: 16px;
+    padding: 13px;
+    border: solid 1px  #22A699;
+    font-weight: bolder;
+}
+.reset {
+  width: 100px;
+  border-radius: 33px;
+  background-color: white;
+  color: #22A699;
+  font-size: 16px;
+  padding: 13px;
+  border: solid 1px  #22A699;
+  font-weight: bolder;
+}
+.posts-container {
+  margin-top: 150px;
 }
