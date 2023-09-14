@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <header>
-    <nav>
+    <nav id="vertical-navbar">
       <div class="navbar-wrapper">
         <a href="/posts">
           <img src="/images/logo-vertical navbar.png" alt="logo" class="logo-vertical-navbar"/>
@@ -33,7 +33,8 @@
         </div>
         <div class="profile-avatar">
           <a href="/profile">
-            <img src="{{user.avatar}}" alt="user avatar" />
+            <p>{{user.avatar}}</p>
+            {{!-- <img src="{{user.avatar}}" alt="user avatar" /> --}}
           </a>
         </div>
         <div class="logout">
