@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// carousel
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -70,3 +71,10 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+// autoplay audio
+const audio = document.getElementById("audio");
+
+window.addEventListener("load", function() {
+  
+  audio.play();
+});

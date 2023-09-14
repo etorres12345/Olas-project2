@@ -2,44 +2,23 @@
     <div class="nav-container">
         <nav class="nav-home">
             <div class="nav-img">
-                <a href="/"><img src="images/logo-home.png" alt="ola logo"></a>
+                <a href="/"><img src="images/logo-home page-green.png" alt="ola logo"></a>
             </div>
-            <div>
+            <div class="navbar-links">
                 <a href="/about-us">About Us</a>
                 <a href="/login">Login</a>
-                <a href="/signup">Sign Up</a>
+                <a class="nav-btn" href="/signup">Sign Up</a>
             </div>
         </nav>   
     </div>
     <section class="hero">
+         <h1>Ride the Wave of Connection with Ola - Where Surfers Meet, Share, and Stoke Together!</h1>
         {{!-- <img src="images/hero-img.png" alt="waves"> --}}
         <video width="100%" height="100%" autoplay muted loop>
             <source src="videos/olas-orilla.mp4" type="video/mp4">
             "Your browser does not support the video tag."
         </video>
     </section>
-
-{{!-- <div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/images/slider container.png" class="d-block w-100" alt="sell/rent slider">
-    </div>
-    <div class="carousel-item">
-      <img src="/images/slider2-container.png" class="d-block w-100" alt="tips slider">
-    </div>
-    <div class="carousel-item">
-      <img src="/images/slider3-container.png" class="d-block w-100" alt="meetups slider">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div> --}}
 
 <div class="slideshow-container">
 
@@ -72,7 +51,7 @@
             <p>Copyright © 2023  All rights reserved</p>
         </div>
         <div class="audio-wrapper">
-             <audio controls autoplay loop>
+             <audio id="audio" controls preload autoplay>
                 <source src="audios/waives.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
