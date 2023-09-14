@@ -50,6 +50,7 @@ body {
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
+
 .navbar-links a:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
@@ -59,9 +60,10 @@ body {
   color:#22A699;
 }
 
-.navbar a:hover a:nth-child(3):not(:hover) {
+.navbar-links a:last-child:hover {
   color: white;
 }
+
 .nav-btn {
   background-color: #22A699;
   padding: 15px;
