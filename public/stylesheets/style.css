@@ -2,6 +2,78 @@
   margin: 0;
   padding: 0
 }
+.nav-container {
+  width: 100%;
+  position: fixed;
+  z-index: 1
+  
+}
+.nav-home {
+    padding-top: 10px;
+    width: 80%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; 
+}
+.hero video {
+  object-fit: fill; 
+  margin: 0;
+}
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 80%;
+  position: relative;
+  margin-left: auto;
+  
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 10%;
+  border-radius: 3px 0 0 3px;
+}
+.prev {
+  left: -10%;
+}
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
 
 /* profile page */
 #profilePencilIcon {
@@ -15,5 +87,36 @@
   /* background-image: url('../images/close-btn.png');
   background-repeat: no-repeat; */
   width: 30px;
+  height: 30px;
+}
+
+/* footer */
+footer {
+  background-color: #22A699;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-center {
+  display: flex;
+  align-items: center;
+}
+.footer-center img {
+  width: 30px;
+  margin-right: 5px;
+}
+.footer-center p {
+  color: white;
+  font-size: 12px;
+}
+.audio-wrapper {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+audio {
+  width: 100px;
   height: 30px;
 }

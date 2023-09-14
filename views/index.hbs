@@ -12,10 +12,71 @@
         </nav>   
     </div>
     <section class="hero">
-        <img src="images/hero-img.png" alt="waves">
+        {{!-- <img src="images/hero-img.png" alt="waves"> --}}
+        <video width="100%" height="100%" autoplay muted loop>
+            <source src="videos/olas-orilla.mp4" type="video/mp4">
+            "Your browser does not support the video tag."
+        </video>
     </section>
+
+{{!-- <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/images/slider container.png" class="d-block w-100" alt="sell/rent slider">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/slider2-container.png" class="d-block w-100" alt="tips slider">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/slider3-container.png" class="d-block w-100" alt="meetups slider">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> --}}
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <img src="images/slider container.png" style="width:80%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  <img src="images/slider2-container.png" style="width:80%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <img src="images/slider3-container.png" style="width:80%">
+  <div class="text">Caption Three</div>
+</div>
+
+{{!-- <a class="prev" onclick="plusSlides(-1)">❮</a> --}}
+<img src="images/icons/icon-slider-prev.png" class="prev" onclick="plusSlides(-1)">
+<img src="images/icons/icon-slider-next.png" class="next" onclick="plusSlides(1)">
+{{!-- <a class="next" onclick="plusSlides(1)">❯</a> --}}
+
+</div>
+
     <footer class="footer">
-    <div><img src="images/logo-footer.png" alt="footer logo"></div>
-    <div>Copyright © 2023  All rights reserved</div>
+       
+        <div class="footer-center">
+            <img src="images/logo-footer.png" alt="footer logo">
+            <p>Copyright © 2023  All rights reserved</p>
+        </div>
+        <div class="audio-wrapper">
+             <audio controls autoplay loop>
+                <source src="audios/waives.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
     </footer>
 </div>
