@@ -3,7 +3,7 @@
 require("dotenv").config();
 
 // ℹ️ Connects to the database
-// require("./db");
+require("./db");
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -19,8 +19,6 @@ const app = express();
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);
-
-
 
 // app.use((req, res, next) => {
 //   res.locals.isLoggedIn = req.session.currentUser ? true : false;
@@ -49,6 +47,15 @@ app.use("/", signupRoutes);
 
 const postRoutes = require("./routes/post.routes");
 app.use("/", postRoutes);
+
+const aboutRoutes = require("./routes/about.routes");
+app.use("/", aboutRoutes);
+
+const error404 = require("./routes/errRoutes/error404.routes");
+app.use("/", error404);
+
+const error500 = require("./routes/errRoutes/error500.routes");
+app.use("/", error500);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
