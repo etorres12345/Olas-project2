@@ -6,7 +6,6 @@ const { isLoggedIn } = require("../middleware/route-guard");
 const axios = require('axios');
 
 // GET route to display form to create post
-
 router.get("/post-create", isLoggedIn, (req, res, next) => {
     res.render("posts/create.hbs", { layout: "layouts/navbar" });
 });
@@ -157,12 +156,6 @@ router.get("/posts", isLoggedIn, async (req, res, next) => {
     ]
 
     const endpoints = beaches.map(beach => `${baseWeatherURL}/forecast?latitude=${beach.lat}&longitude=${beach.long}&current_weather=true`)
-    console.log("Endpoints are =======", endpoints);
-    // let endpoints = []
-    // for (i = 0; i < beaches.length; i++) {
-    //     endpoints.push(
-    //         `${baseWeatherURL}/forecast?latitude=${beaches[i].lat}&longitude=${beaches[i].long}&current_weather=true`);
-    // }
 
     const data = await axios.all(endpoints.map((endpoint) =>
         axios.get(endpoint)))

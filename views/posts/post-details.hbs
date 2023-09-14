@@ -1,5 +1,5 @@
 <h2>Single post when clicked via profile</h2>
-
+{{!-- 
 <div class="posts-container">
   <div class="post-card">
 
@@ -22,8 +22,19 @@
     </div>
     <div class="post-meta">
       <p>Author: {{thePost.author.username}}</p>
-      <p>Created: {{dateFormat thePost.createdAt "MMM Do YYYY, h:mm a" true}}</p>
+      <p>Created: {{thePost.createdAt "MMM Do YYYY, h:mm a" true}}</p>
     </div>
  </div> 
 </div>
+ --}}
+
+  {{#each thePost}}
+    {{> postpartial this}}
+    <div class="post-modify">
+      <a href="/post/{{this._id}}/edit">Edit</a>
+      <form action="/post/{{this._id}}/delete" method="POST">
+        <button>Delete</button>
+      </form>
+    </div>
+{{/each}}  
 

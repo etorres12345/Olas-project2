@@ -13,18 +13,9 @@
 </div>
 
 
-<div class="posts-container">
-  {{#each posts}}
-
-    <div class="post-card">
-      {{!-- {{#compareUser userInSession._id  this.author._id}} --}}
-      {{!-- <div class="post-modify">
-        <a href="/post/{{this._id}}/edit">Edit</a>
-        <form action="/post/{{this._id}}/delete" method="POST">
-          <button>Delete</button>
-        </form>
-      </div> --}}
-      {{!-- {{/compareUser}} --}}
+{{!-- <div class="posts-container">
+  {{#each posts}} --}}
+    {{!-- <div class="post-card">
       <div class="post-category">
         <h5>Category: {{this.category}}</h5>
       </div>
@@ -39,15 +30,19 @@
         <p>Author: {{this.author.username}}</p>
         <p>Created: {{dateFormat this.createdAt "MMM Do YYYY, h:mm a" true}}</p>
       </div>
-    </div>
-  {{/each}}
-</div>
+    </div> --}}
+  {{!-- {{/each}}
+</div> --}}
 
+<div class="posts-container">
+    {{#each posts}}
+      {{> postpartial this}}
+    {{/each}}
+</div>
 
 <div>
 <h3> Current conditions at the top 5 beaches</h3>
 {{#each beachInformation}}
-
   <h5>Beach: {{this.name}}</h5>
   <p>Temperature: {{this.beachData.temperature}}°C</p>
   <p>Wind speed: {{this.beachData.windspeed}}km/h</p>
