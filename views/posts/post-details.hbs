@@ -1,9 +1,39 @@
-    {{> postpartial thePost}}
-    <div class="post-modify">
-      <a href="/post/{{thePost._id}}/edit">Edit</a>
-      <form action="/post/{{thePost._id}}/delete" method="POST">
-        <button>Delete</button>
-      </form>
+
+<div class="create-post-container">
+<div class="posts-container">
+  <div class="post-card">
+
+      <div class="post-modify">
+        <div class="icons-wrap">
+          <img src="/images/icons/icon-pencil-grey.png" alt="icon pencil">
+          <a href="/post/{{thePost._id}}/edit">edit</a>
+        </div>
+        <div class="icons-wrap">
+          <img src="/images/icons/icon-bin-grey.png" alt="icon bin">
+          <form action="/post/{{thePost._id}}/delete" method="POST">
+            <button>delete</button>
+          </form>
+        </div>
+      </div>
+
+    <div class="post-category">
+      <h5>Category: {{thePost.category}}</h5>
     </div>
+    <div class="post-title">
+      <h5>Title: {{thePost.title}}</h5>
+    </div>
+    <div class="post-content">
+      <p>Description: {{thePost.description}}</p>
+      <div class="media-wrap">
+        <img src="{{thePost.mediaUrl}}" alt="">
+      </div> 
+    </div>
+    <div class="post-meta">
+      <p>Author: {{thePost.author.username}}</p>
+      <p>Created: {{dateFormat thePost.createdAt "MMM Do YYYY, h:mm a" true}}</p>
+    </div>
+ </div> 
+</div>
 
 
+</div>
