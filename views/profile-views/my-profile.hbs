@@ -4,7 +4,10 @@
   {{!-- here a random number --}}
   <div class="profile-wrapper">
     {{!-- <img src="{{user.avatar}}" alt="User Avatar" class="avatar" /> --}}
-    <p>{{user.avatar}}</p>
+    <img
+      src="{{user.avatar}}"
+      style="border-radius:100%; width: 80px; height=80px;"/>
+
     <div class="profile-name-wrapper">
       <h2>{{ user.username }}  </h2>
       <img id="profilePencilIcon" src="./images/icons/edit-icon.png" /> 
@@ -52,24 +55,3 @@
 {{else}}
   <p>No posts yet. Start sharing your surf adventures!</p>
 {{/if}}
-
- {{!-- <button id="deleteProfileBtn" class="btn btn-primary">Delete</button> --}}
-
-
-
-
- 
- 
-
-  
-{{!-- {{#if userInSession}}
-  <h2>Welcome, {{ userInSession.username }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/userProfile">Reload the page</a>
-  </button>
-{{else}}
-  
-  <br><p>Still no logged in user, sorry!</p>
- 
-{{/if}} --}}

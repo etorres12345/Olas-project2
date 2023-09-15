@@ -1,9 +1,7 @@
 <script src="../js/script.js"></script>
 
-{{!-- <h2>All posts List when logged in</h2> --}}
 <div class="search-navbar">
   <div class="search-wrapper">
-    {{!-- <img src="/images/icons/search-icon (2).png" id="search-image" alt="Search" /> --}}
     <form id="search-form" action="/posts" method="POST">
       <input type="text" name="keyword" placeholder="Search..." />
       <button class="search" type="submit">Search</button>
@@ -12,9 +10,12 @@
   </div>
 </div>
 
-
 <div class="posts-container">
-  {{#each posts}}
+    {{#each posts}}
+      {{> postpartial this}}
+    {{/each}}
+</div>
+
 
     <div class="post-card">
       {{!-- {{#compareUser userInSession._id  this.author._id}} --}}
@@ -43,4 +44,5 @@
       </div>
     </div>
   {{/each}}
+
 </div>
