@@ -264,6 +264,10 @@ audio {
   cursor: pointer;
   font-weight: bolder;
 }
+.nopost-wrap p {
+  text-align: center;
+  margin-top: 100px;
+}
 /* main container */
 #navbar-hbs {
   margin-left: 15%;
@@ -1072,7 +1076,7 @@ audio {
   margin: 0;
   position: relative;
 }
-#audio {
+.audio-wrapper-signup {
   width: 100px;
   height: 30px;
   position: absolute;
