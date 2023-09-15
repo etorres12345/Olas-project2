@@ -42,7 +42,15 @@ community.
 
 ## Screenshots
 
-
+![homepage](public/images/readme-img/homepage.png)
+![login form](public/images/readme-img/login.png)
+![signup form](public/images/readme-img/signup.png)
+![feed - list of posts](public/images/readme-img/feed.png)
+![user profile](public/images/readme-img/profile.png)
+![update user profile](public/images/readme-img/update-profile.png)
+![create post](public/images/readme-img/create-post.png)
+![edit-detele post](public/images/readme-img/edit-delete-post.png)
+![eror404](public/images/readme-img/error404.png)
 
 ## Getting Started
 
