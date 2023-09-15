@@ -13,6 +13,7 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 hbs.registerHelper("dateFormat", require("handlebars-dateformat"));
+hbs.registerPartials(__dirname + "/views/partials");
 
 const app = express();
 
@@ -51,11 +52,6 @@ app.use("/", postRoutes);
 const aboutRoutes = require("./routes/about.routes");
 app.use("/", aboutRoutes);
 
-const error404 = require("./routes/errRoutes/error404.routes");
-app.use("/", error404);
-
-const error500 = require("./routes/errRoutes/error500.routes");
-app.use("/", error500);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

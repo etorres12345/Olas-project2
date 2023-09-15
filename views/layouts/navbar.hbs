@@ -10,20 +10,39 @@
     <nav id="vertical-navbar">
       <div class="navbar-wrapper">
         <a href="/posts">
-          <img src="/images/logo-vertical navbar.png" alt="logo" class="logo-vertical-navbar"/>
+          <img
+            src="/images/logo-vertical navbar.png"
+            alt="logo"
+            class="logo-vertical-navbar"
+          />
         </a>
         <div class="category-btn">
           <div class="btn-wrap">
-            <img src="/images/btn-category sell.png" alt="category sell/rent button" id="sell-btn" data-category="sell/rent"/>
+            <img
+              src="/images/btn-category sell.png"
+              alt="category sell/rent button"
+              id="sell-btn"
+              data-category="sell/rent"
+            />
             <p class="img__description">sell/rent</p>
           </div>
-           <div class="btn-wrap">
-            <img src="/images/btn-category-tips.png" alt="category tips button" id="tips-btn" data-category="tips"/>
+          <div class="btn-wrap">
+            <img
+              src="/images/btn-category-tips.png"
+              alt="category tips button"
+              id="tips-btn"
+              data-category="tips"
+            />
             <p class="img__description">tips</p>
           </div>
           <div class="btn-wrap">
-            <img src="/images/btn-category-meetup.png" alt="category meetup button" id="meetup-btn" data-category="meetup"/>
-             <p class="img__description">meetup</p>
+            <img
+              src="/images/btn-category-meetup.png"
+              alt="category meetup button"
+              id="meetup-btn"
+              data-category="meetup"
+            />
+            <p class="img__description">meetup</p>
           </div>
         </div>
         <div class="create-post">
@@ -33,8 +52,7 @@
         </div>
         <div class="profile-avatar">
           <a href="/profile">
-            <p>{{user.avatar}}</p>
-            {{!-- <img src="{{user.avatar}}" alt="user avatar" /> --}}
+              <img src="{{user.avatar}}" style="border-radius:100%; width:80px; height:80px; border:1px solid ##22a699;"/>
           </a>
         </div>
         <div class="logout">
@@ -47,10 +65,10 @@
   </header>
   <body>
 
-  <main id="navbar-hbs">
+    <main id="navbar-hbs">
 
-    {{{body}}}
-   </main>
+      {{{body}}}
+    </main>
     <script src="/js/script.js"></script>
   </body>
 </html>

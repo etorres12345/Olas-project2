@@ -1,18 +1,25 @@
 <div class="logo-green-wrapper">
-    <img src="/images/logo-green-login.png" alt="green app logo">
+    <a href="/"><img src="images/logo-home page-green.png" alt="ola logo"></a>
 </div>
 <div id="form-login">
-  <h2>Welcome back to Ola -<span>Where Surfing Connections Await! 🤙</span></h2>
-    <form action="/login" method="POST">
-        <label> enter your username*
+  <div class="login-wrapper">
+    <h2>Welcome back to Ola -<span>Where Surfing Connections Await! 🤙</span></h2>
+    <div class="login-form-inputs">
+      <form action="/login" method="POST">
+       <label> enter your username*</label>
             <input type="text" name="username" placeholder="username"/>
-        </label>
-        <label>enter your password*
+        
+        <label>enter your password*</label>
             <input type="password" name="password" placeholder="********" />
-        </label>
-        <button type="submit">Login</button>
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+        <div class="button-form-wrap">
+          <button type="submit">login</button>
+        </div>
+        
+        {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+        {{/if}}
+    </form>
+    </div>
+       
+  </div>
 </div>

@@ -3,6 +3,7 @@
 //   console.log("olas-project2 JS imported successfully!");
 // });
 
+//profile page
 // const profilePencilIcon = document.getElementById("profilePencilIcon");
 // const popupEditForm = document.getElementById("popupEditForm");
 // const closePopupBtn = document.getElementById("closePopupBtn");
@@ -21,6 +22,29 @@
 //     window.location.href = "/";
 //   }
 // });
+document.addEventListener("DOMContentLoaded", () => {
+  const profilePencilIcon = document.getElementById("profilePencilIcon");
+  const popupEditForm = document.getElementById("popupEditForm");
+  const closePopupBtn = document.getElementById("closePopupBtn");
+  const deleteProfileBtn = document.getElementById("deleteProfileBtn");
+
+  profilePencilIcon.addEventListener("click", () => {
+    popupEditForm.style.display = "block";
+  });
+
+  closePopupBtn.addEventListener("click", () => {
+    popupEditForm.style.display = "none";
+  });
+
+  // deleteProfileBtn.addEventListener("click", () => {
+  //   const isConfirmed = confirm("Are you sure you want to leave the surfers community?");
+
+  //   if (isConfirmed) {
+  //     window.location.href = "/";
+  //   }
+  // });
+});
+
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
 document.addEventListener("DOMContentLoaded", () => {
@@ -71,7 +95,7 @@ function showSlides(n) {
     slides[i].style.display = "none";  
   }
   slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+ 
 }
 
 // autoplay audio
@@ -81,3 +105,4 @@ window.addEventListener("load", function() {
   
   audio.play();
 });
+

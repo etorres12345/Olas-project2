@@ -1,9 +1,7 @@
 <script src="../js/script.js"></script>
 
-{{!-- <h2>All posts List when logged in</h2> --}}
 <div class="search-navbar">
   <div class="search-wrapper">
-    {{!-- <img src="/images/icons/search-icon (2).png" id="search-image" alt="Search" /> --}}
     <form id="search-form" action="/posts" method="POST">
       <input type="text" name="keyword" placeholder="Search..." />
       <button class="search" type="submit">Search</button>
@@ -11,46 +9,23 @@
     </form>
   </div>
 </div>
-
-
+<div class="post-page">
 <div class="posts-container">
-  {{#each posts}}
-
-    <div class="post-card">
-      {{!-- {{#compareUser userInSession._id  this.author._id}} --}}
-      {{!-- <div class="post-modify">
-        <a href="/post/{{this._id}}/edit">Edit</a>
-        <form action="/post/{{this._id}}/delete" method="POST">
-          <button>Delete</button>
-        </form>
-      </div> --}}
-      {{!-- {{/compareUser}} --}}
-      <div class="post-category">
-        <h5>Category: {{this.category}}</h5>
-      </div>
-      <div class="post-title">
-        <h5>Title: {{this.title}}</h5>
-      </div>
-      <div class="post-content">
-        <p>Description: {{this.description}}</p>
-        <img src="{{this.mediaUrl}}" alt="" />
-      </div>
-      <div class="post-meta">
-        <p>Author: {{this.author.username}}</p>
-        <p>Created: {{dateFormat this.createdAt "MMM Do YYYY, h:mm a" true}}</p>
-      </div>
+    {{#each posts}}
+      {{> postpartial this}}
+    {{/each}}
+</div>
+</div>
+   <div class="api-container">
+    <h3> Current conditions at the top 5 beaches</h3>
+    {{#each beachInformation}}
+    <div class="beach-conditions">
+      <br>
+      <h5>Beach: {{this.name}}</h5>
+      <p>Temperature: {{this.beachData.temperature}}°C</p>
+      <p>Wind speed: {{this.beachData.windspeed}}km/h</p>
+      <p>Wind direction: {{this.beachData.windspeed}} kts</p>
     </div>
-  {{/each}}
-</div>
+    {{/each}}
+  </div>
 
-
-<div>
-<h3> Current conditions at the top 5 beaches</h3>
-{{#each beachInformation}}
-
-  <h5>Beach: {{this.name}}</h5>
-  <p>Temperature: {{this.beachData.temperature}}°C</p>
-  <p>Wind speed: {{this.beachData.windspeed}}km/h</p>
-  <p>Wind direction: {{this.beachData.windspeed}} kts</p>
-{{/each}}
-</div>
