@@ -3,8 +3,8 @@
   padding: 0;
 }
 body {
-  min-height: 100%
-  font-family: 'Montserrat', 'Mooli', 'Ubuntu', sans-serif;
+  min-height: 100%;
+  font-family: "Montserrat", "Mooli", "Ubuntu", sans-serif;
 }
 /* home page */
 .nav-container {
@@ -57,9 +57,9 @@ body {
   color: #22a699;
 }
 .navbar-links a:last-child:hover {
-  color: #22A699;
+  color: #22a699;
   background-color: white;
-  border: 3px solid #22A699;
+  border: 3px solid #22a699;
 }
 .navbar-links a:last-child:after {
   height: 0;
@@ -827,9 +827,9 @@ audio {
 }
 /* edit post */
 .edit-media-wrapper {
- width: 100%;
- height: auto;
- overflow-x: hidden;
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
 }
 .edit-media-wrapper img {
   width: 100%;
@@ -837,7 +837,7 @@ audio {
 /* single post */
 .posts-container {
   margin-top: 60px;
-  border: 1px solid #22A699;
+  border: 1px solid #22a699;
   border-radius: 33px;
 }
 .post-card {
@@ -850,7 +850,7 @@ audio {
 }
 .post-modify a {
   text-decoration: none;
-  color: #9A8D8D;
+  color: #9a8d8d;
   font-size: 16px;
   font-weight: bold;
 }
@@ -864,9 +864,9 @@ audio {
   margin-bottom: 5px;
 }
 .icons-wrap button {
-  background:none;
+  background: none;
   border: none;
-  color: #9A8D8D;
+  color: #9a8d8d;
   font-size: 16px;
   font-weight: bold;
 }
@@ -874,7 +874,7 @@ audio {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  color:#22A699;
+  color: #22a699;
 }
 .post-title h5 {
   font-size: 20px;
@@ -896,7 +896,8 @@ audio {
 .media-wrap img {
   width: 100%;
 }
-.post-meta, .category-options p {
+.post-meta,
+.category-options p {
   font-size: 20px;
   font-weight: 200;
   margin-bottom: 10px;
@@ -913,7 +914,7 @@ audio {
 }
 /* login page */
 .logo-green-wrapper {
-  margin:100px;
+  margin: 100px;
 }
 #form-login {
   background-color: red;
@@ -923,7 +924,7 @@ audio {
 }
 /* signup page */
 #form-signup {
-  background-color: #22A699;
+  background-color: #22a699;
 }
 .video-wrapper video {
   object-fit: fill;
@@ -944,7 +945,7 @@ audio {
   position: absolute;
 }
 .error-text-container h1 {
-  color:#22A699;
+  color: #22a699;
   font-weight: bolder;
   font-size: 200px;
 }
