@@ -5,7 +5,7 @@ const User = require('../../models/User.model');
 const mongoose = require('mongoose');
 const { isLoggedOut } = require('../../middleware/route-guard');
 
-router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup'));
+router.get('/signup', isLoggedOut, (req, res) => res.render('auth/signup',  { layout: "layouts/main" }));
 
 router.post('/signup', (req, res, next) => {
 

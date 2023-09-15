@@ -1,38 +1,45 @@
-<div class="logo-green-wrapper">
+<div class="logo-green-wrapper-singup">
     <a href="/"><img src="images/logo-home page-green.png" alt="ola logo"></a>
 </div>
-<h1> Already have an account?
-    <a href="/login">Login &rarr;</a>
-</h1>
+<div class="signup-header-wrap">
+    <h1> Already have an account?
+        <a href="/login">Login &rarr;</a>
+    </h1>
+</div>
+    
 <div id="form-signup">
-    <form action="/signup" method="POST">
-        <h2>Welcome to Ola 🌊️‍️ 🤙!!  
-            <span>Let's ride the wave of Surfing Connections!</span>
-        </h2>
-        <label> enter a username*
-            <input type="text" name="username" placeholder="username" />
-        </label>
-        <label> enter a password*
-            <input type="password" name="password" placeholder="********" />
-        </label>
- 
-        <button type="submit">Create account</button>
- 
-    {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+     <div class="login-wrapper">
+         <form action="/signup" method="POST">
+            <h2>Welcome to Ola 🌊️‍️ 🤙!!  
+                <span>Let's ride the wave of Surfing Connections!</span>
+            </h2>
+            <label> enter a username*</label>
+                <input type="text" name="username" placeholder="username" />
+            
+            <label> enter a password*</label>
+                <input type="password" name="password" placeholder="********" />
+            
+            <div class="button-form-wrap">
+                <button type="submit">Create account</button>
+            </div>
+            {{#if errorMessage}}
+                <p class="error">{{errorMessage}}</p>
+            {{/if}}
+        </form>
+    </div>
+</div>
+   
   <div class="video-wrapper">
     <video width="100%" height="100%" autoplay muted loop>
         <source src="videos/video-on the water.mp4" type="video/mp4">
         "Your browser does not support the video tag."
     </video>
   </div>
-    <div class="audio-wrapper">
+    <div class="audio-wrapper-signup">
         <audio id="audio" controls preload autoplay>
             <source src="audios/waives.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
          </audio>
     </div>   
     
-</div>
+
