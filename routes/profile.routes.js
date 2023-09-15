@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { isLoggedOut, isLoggedIn } = require("../middleware/route-guard");
+const { isLoggedIn } = require("../middleware/route-guard");
 const User = require("../models/User.model");
 const Post = require("../models/Post.model");
 const fileUploader = require("../config/cloudinary.config");
 
 
 // GET route to display only current user's posts
-router.get("/profile", (req, res) => {
+router.get("/profile", isLoggedIn, (req, res) => {
   const { _id } = req.session.currentUser;
 
   User.findById(_id)
@@ -20,12 +20,6 @@ router.get("/profile", (req, res) => {
     })
     .catch((error) => next(error));
 });
-
-// router.get("/profile/:id/edit", (req, res) => {
-//   const {_id} = req.session.user;
-//     console.log("----- the user id-----",_id)
-//   res.render("profile-views/my-profile");
-// });
 
 router.post(
   "/profile",
