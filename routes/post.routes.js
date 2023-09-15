@@ -118,7 +118,7 @@ router.post("/posts", isLoggedIn, (req, res) => {
   Post.find({ $text: { $search: keyword } })
     .then((posts) => {
       console.log("Found this!");
-      res.render("posts/posts.hbs", { layout: "layouts/navbar", posts, user: req.session.currentUser });
+      res.render("posts/posts.hbs", { layout: "layouts/main", posts, user: req.session.currentUser });
     })
     .catch((err) => {
       console.error(err);

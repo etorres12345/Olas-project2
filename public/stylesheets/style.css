@@ -317,11 +317,6 @@ audio {
   border: solid 1px #22a699;
   font-weight: bolder;
 }
-/* .search:hover {
-  border: 2px solid #22A699;
-  color: #22A699;
-  background-color: white;
-} */
 .reset {
   width: 100px;
   border-radius: 33px;
@@ -332,12 +327,22 @@ audio {
   border: solid 1px #22a699;
   font-weight: bolder;
 }
-/* .reset:hover {
-  background-color: #22A699;
-  color: white;
-} */
 .posts-container {
   margin-top: 150px;
+}
+.api-container {
+  position: fixed;
+  top: 20%;
+  right: 30px;
+  padding: 23px;
+  width: 240px;
+}
+.api-container h3 {
+  font-size: 16px;
+  color:#22a699;
+}
+.api-container p {
+  font-size: 14px;
 }
 /* profile page */
 .profile-container {
@@ -600,6 +605,12 @@ audio {
   text-align: center;
   padding: 20px 40px;
   margin-right: 2px;
+}
+.post-description {
+ width: 100%;
+}
+.post-description img {
+  width: 100%;
 }
 
 /* About-us nav bar */

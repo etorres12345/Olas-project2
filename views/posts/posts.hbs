@@ -15,12 +15,12 @@
       {{> postpartial this}}
     {{/each}}
 </div>
-
-
+</div>
    <div class="api-container">
     <h3> Current conditions at the top 5 beaches</h3>
     {{#each beachInformation}}
     <div class="beach-conditions">
+      <br>
       <h5>Beach: {{this.name}}</h5>
       <p>Temperature: {{this.beachData.temperature}}°C</p>
       <p>Wind speed: {{this.beachData.windspeed}}km/h</p>
@@ -28,4 +28,4 @@
     </div>
     {{/each}}
   </div>
-</div>
+
