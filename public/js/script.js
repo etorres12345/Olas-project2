@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
     popupEditForm.style.display = "none";
   });
 
-  deleteProfileBtn.addEventListener("click", () => {
-    const isConfirmed = confirm("Are you sure you want to leave the surfers community?");
+  // deleteProfileBtn.addEventListener("click", () => {
+  //   const isConfirmed = confirm("Are you sure you want to leave the surfers community?");
 
-    if (isConfirmed) {
-      window.location.href = "/";
-    }
-  });
+  //   if (isConfirmed) {
+  //     window.location.href = "/";
+  //   }
+  // });
 });
 
 
@@ -95,7 +95,7 @@ function showSlides(n) {
     slides[i].style.display = "none";  
   }
   slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+ 
 }
 
 // autoplay audio
