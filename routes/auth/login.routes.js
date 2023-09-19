@@ -5,7 +5,7 @@ const { isLoggedOut } = require('../../middleware/route-guard');
 
 
 router.get('/login', isLoggedOut, (req, res) => {
-    res.render('auth/login',  { layout: "layouts/main", userInSession: req.session.currentUser });
+    res.render('auth/login', { layout: "layouts/main", userInSession: req.session.currentUser });
 });
 
 router.post('/login', (req, res, next) => {
@@ -13,7 +13,7 @@ router.post('/login', (req, res, next) => {
 
     if (username === '' || password === '') {
         res.render('auth/login', {
-            errorMessage: 'Surfer, please enter both, your username and password to login 👆'
+            errorMessage: 'Surfer, please enter both, your username and password to login 👆', layout: "layouts/main"
         });
         return;
     }
@@ -21,7 +21,7 @@ router.post('/login', (req, res, next) => {
         .then(user => {
             if (!user) {
                 res.render('auth/login', {
-                    errorMessage: 'User not found and/or incorrect password 🤖'
+                    errorMessage: 'User not found and/or incorrect password 🤖', layout: "layouts/main"
                 });
                 return;
             } else if (bcryptjs.compareSync(password, user.passwordHash)) {
